@@ -1,13 +1,23 @@
 import React from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-const Container = styled.div``
+import Repo from 'components/Repo'
+
+import {Container} from './styled'
 
 export default class ReposView extends React.PureComponent {
+  renderChildren () {
+    const {repos} = this.props;
+
+    return repos.map(repo => {
+      <Repo></Repo>
+    })
+  }
+
   render () {
     return (
       <Container>
+        Repos view
       </Container>
     )
   }

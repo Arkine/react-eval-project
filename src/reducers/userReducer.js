@@ -2,7 +2,7 @@ import {SET_USER, GET_USER} from 'constants/actionTypes'
 
 const initialState = {
   loading: false,
-  data: []
+  data: {}
 }
 
 export default function users (state = initialState, action) {
