@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 const Image = styled.img`
   border-radius: 30px;
+  margin: 0 auto;
 `
 
 export default class ImageBlock extends React.PureComponent {
@@ -15,7 +16,7 @@ export default class ImageBlock extends React.PureComponent {
 }
 
 ImageBlock.defaultProps = {
-  image: '',
+  image: ''
 }
 
 ImageBlock.propTypes = {

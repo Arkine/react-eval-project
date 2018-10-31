@@ -1,7 +1,7 @@
 import {SET_USER, GET_USER} from 'constants/actionTypes'
 
 export function getUser () {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: GET_USER
     })

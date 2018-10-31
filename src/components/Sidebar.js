@@ -7,8 +7,8 @@ const Container = styled.div`
   justify-content: center;
 
   flex-basis: 15rem;
-  padding: 1rem;
-  
+  padding: 0.5rem;
+
   width: 100%;
   height: 100vh;
   background-color: ${props => props.theme.colors.blue_light};

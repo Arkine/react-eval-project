@@ -1,7 +1,7 @@
 import {SET_REPOS, GET_REPOS} from 'constants/actionTypes'
 
 export function getRepos () {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: GET_REPOS
     })

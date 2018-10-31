@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 Container.Content = styled.div`
   flex-grow: 1;
-  padding: 1rem;
+  padding: 0.5rem;
 `
 
 export const Stage = styled.div`

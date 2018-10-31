@@ -1,33 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {faArchive, faUsers} from '@fortawesome/free-solid-svg-icons'
 
-import UnorderedList from '../../components/common/UnorderedList'
 import ImageBlock from '../../components/common/ImageBlock'
+import IconText from '../../components/IconText'
 
 import {Container} from './styled'
 
 export default class UserView extends React.PureComponent {
-  createListItems () {
-    const {public_repos, followers} = this.props.user
-
-    return {
-      public_repos,
-      followers
-    }
-  }
-
   render () {
-    const listItems = this.createListItems()
-    const {bio, name, avatar_url} = this.props.user
+    const {bio, name, avatar_url, public_repos, followers} = this.props.user
 
     return (
       <Container>
-        <Container.Username>{name}</Container.Username>
-        <ImageBlock image={avatar_url} height={230} width={230} />
-        <Container.Bio>
-          {bio}
-        </Container.Bio>
-        <UnorderedList items={listItems} />
+        <Container.Content>
+          <Container.Username>{name}</Container.Username>
+          <ImageBlock image={avatar_url} height={230} width={230} />
+          <Container.Bio>
+            {bio}
+          </Container.Bio>
+          <IconText text={`Repositories ${public_repos}`} icon={faArchive} />
+          <IconText text={`Followers ${followers}`} icon={faUsers} />
+        </Container.Content>
       </Container>
     )
   }

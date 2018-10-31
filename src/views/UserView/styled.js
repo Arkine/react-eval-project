@@ -4,7 +4,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+`
+Container.Content = styled.div`
+  background-color: #fff;
+  border-radius: 10px;
+  height: 100%;
+  padding: 1rem;
 `
 Container.Username = styled.h1`
   font-size: ${props => props.theme.fonts.h1.desktop};

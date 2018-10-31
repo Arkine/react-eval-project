@@ -1,7 +1,7 @@
 import {SET_EVENTS, GET_EVENTS} from 'constants/actionTypes'
 
 export function getEvents () {
-  return (dispatch) => {
+  return dispatch => {
     // Set the loading state
     dispatch({
       type: GET_EVENTS

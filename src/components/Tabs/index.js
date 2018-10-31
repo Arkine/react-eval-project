@@ -5,7 +5,7 @@ import {TabsContainer} from './styled'
 
 export default class Tabs extends React.Component {
   constructor (props) {
-    super(props);
+    super(props)
 
     this.state = {
       activeTabIndex: this.props.defaultActiveTabIndex
@@ -19,13 +19,13 @@ export default class Tabs extends React.Component {
   }
 
   renderChildrenWithProps () {
-    return React.Children.map(this.props.children, (child, index) => {
-      return React.cloneElement(child, {
+    return React.Children.map(this.props.children, (child, index) => (
+      React.cloneElement(child, {
         onClick: this.handleTabClick,
         tabIndex: index,
         isActive: index === this.state.activeTabIndex
       })
-    })
+    ))
   }
 
   renderActiveTabContent () {

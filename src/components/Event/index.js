@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export default class Event extends React.PureComponent {
   render () {
     return (
-      <div></div>
+      <div>Event</div>
     )
   }
 }
@@ -14,5 +14,5 @@ Event.defaultProps = {
 }
 
 Event.PropTypes = {
-  event: PropTypes.object.isRequired,
+  event: PropTypes.object.isRequired
 }

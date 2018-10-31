@@ -8,7 +8,8 @@ export default {
     charcoal: '#2e3033'
   },
   fonts: {
-    family: '',
+    family: '"Raleway", sans-serif',
+    rootSize: '16px',
     h1: {
       desktop: '1.625rem',
       mobile: '1.125rem'

@@ -8,6 +8,8 @@ import theme from 'services/theme'
 import history from 'services/history'
 import App from './views/App'
 
+import GlobalStyles from './GlobalStyles'
+
 export default class ApplicationNode extends Component {
   static propTypes = {
     store: PropTypes.object.isRequired
@@ -21,6 +23,7 @@ export default class ApplicationNode extends Component {
     return (
       <ThemeProvider theme={theme}>
         <div>
+          <GlobalStyles />
           <Provider store={store}>
             <Router history={history}>
               <Switch>
