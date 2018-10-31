@@ -16,7 +16,7 @@ Container.Username = styled.h1`
 `
 Container.Bio = styled.div`
   margin-top: 1rem;
-`;
+`
 
 export default class UserView extends React.PureComponent {
   createListItems () {
@@ -30,7 +30,7 @@ export default class UserView extends React.PureComponent {
 
   render () {
     const listItems = this.createListItems()
-    const {bio, name} = this.props.user.data;
+    const {bio, name} = this.props.user.data
 
     return (
       <Container>

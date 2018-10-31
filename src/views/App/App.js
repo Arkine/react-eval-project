@@ -7,9 +7,10 @@ import styled from 'styled-components'
 
 // import Header from 'components/Header'
 import Sidebar from 'components/Sidebar'
-import ImageBlock from 'components/common/ImageBlock'
 import Loading from 'components/common/Loading'
 import UserView from './UserView'
+import EventsView from './EventsView'
+import ReposView from './ReposView'
 
 import {getUser} from 'actions/userActions'
 import {getRepos} from 'actions/reposActions'
@@ -65,7 +66,7 @@ export default class App extends Component {
   render () {
     const {user, events, repos} = this.props
     const isLoading = (user.loading || events.loading || repos.loading)
-    console.log(this.props);
+
     return (
       <Container>
         <Loading isLoading={isLoading} />
@@ -73,9 +74,24 @@ export default class App extends Component {
           <UserView user={user} />
         </Sidebar>
         <Container.Content>
-          <Stage></Stage>
+          <Stage>
+            <ReposView repos={repos} />
+            <EventsView events={events} />
+          </Stage>
         </Container.Content>
       </Container>
     )
   }
+}
+
+App.defaultProps = {
+  user: {},
+  events: {},
+  repos: {}
+}
+
+App.propTypes = {
+  user: PropTypes.object.isRequired,
+  events: PropTypes.object.isRequired,
+  repos: PropTypes.object.isRequired
 }
