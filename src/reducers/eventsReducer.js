@@ -1,4 +1,4 @@
-import {SET_EVENTS} from 'constants/actionTypes'
+import {SET_EVENTS, GET_EVENTS} from 'constants/actionTypes'
 
 const initialState = {
   loading: false,

@@ -8,13 +8,30 @@ import styled from 'styled-components'
 // import Header from 'components/Header'
 import Sidebar from 'components/Sidebar'
 import ImageBlock from 'components/common/ImageBlock'
+import Loading from 'components/common/Loading'
+import UserView from './UserView'
 
 import {getUser} from 'actions/userActions'
 import {getRepos} from 'actions/reposActions'
 import {getEvents} from 'actions/eventsActions'
 
 const Container = styled.div`
-  background-color: red;
+  display: flex;
+  flex-direction: row;
+
+  background-color: ${props => props.theme.colors.charcoal};
+`
+
+Container.Content = styled.div`
+  flex-grow: 1;
+  padding: 1rem;
+`
+
+const Stage = styled.div`
+  background-color: white;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
 `
 
 const mapStateToProps = state => ({
@@ -46,14 +63,18 @@ export default class App extends Component {
   }
 
   render () {
-    const {user} = this.props;
-    // console.log(this.props)
+    const {user, events, repos} = this.props
+    const isLoading = (user.loading || events.loading || repos.loading)
+    console.log(this.props);
     return (
       <Container>
+        <Loading isLoading={isLoading} />
         <Sidebar>
-          <ImageBlock image={user.avatar_url} height={200} width={200} />
+          <UserView user={user} />
         </Sidebar>
-
+        <Container.Content>
+          <Stage></Stage>
+        </Container.Content>
       </Container>
     )
   }

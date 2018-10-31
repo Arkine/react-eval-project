@@ -1,7 +1,11 @@
-import {SET_REPOS} from 'constants/actionTypes'
+import {SET_REPOS, GET_REPOS} from 'constants/actionTypes'
 
 export function getRepos () {
   return (dispatch) => {
+    dispatch({
+      type: GET_REPOS
+    })
+
     setTimeout(() => {
       dispatch({
         type: SET_REPOS,
