@@ -31,7 +31,6 @@ export default class Tabs extends React.Component {
   renderActiveTabContent () {
     const {children} = this.props
     const {activeTabIndex} = this.state
-
     if (children[activeTabIndex]) {
       return children[activeTabIndex].props.children
     }

@@ -6,7 +6,7 @@ import {TabContainer} from './styled'
 export default class Tab extends React.PureComponent {
   render () {
     return (
-      <TabContainer>
+      <TabContainer isActive={this.props.isActive}>
         <TabContainer.Link
           isActive={this.props.isActive}
           onClick={event => {

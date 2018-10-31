@@ -9,10 +9,10 @@ const spin = keyframes`
   from {transform: rotate(0deg)}
   to {transform: rotate(360deg)}
 `
-const fadeIn = keyframes`
-  from {opacity: 0}
-  to {opacity: 1}
-`
+// const fadeIn = keyframes`
+//   from {opacity: 0}
+//   to {opacity: 1}
+// `
 const fadeOut = keyframes`
   from {opacity: 1}
   to {opacity: 0}

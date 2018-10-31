@@ -13,7 +13,8 @@ TabsContainer.Content = styled.div``
 export const TabContainer = styled.li`
   padding: 0.5rem;
 
-  border: 1px solid #333;
+  border-bottom: 2px solid ${props => props.isActive ? props.theme.colors.blue_dark : '#fff'};
+
   list-style: none;
 
   &:hover {

@@ -21,11 +21,11 @@ export default class IconText extends React.PureComponent {
 }
 
 IconText.defaultProps = {
-  icon: '',
+  icon: {},
   text: ''
 }
 
 IconText.propTypes = {
-  icon: PropTypes.string,
-  text: PropTypes.string
+  icon: PropTypes.object.isRequired,
+  text: PropTypes.string.isRequired
 }
