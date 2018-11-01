@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import setTitle from '../../decorators/setTitle'
 import transitionRoute from '../../decorators/transitionRoute'
-import SlidingCards from '../../components/testing/slidingCards';
+import SlidingCards from '../../components/slidingCards'
 import Repo from '../../components/Repo'
 
 @setTitle('John-David Dalton | Repositories')
