@@ -10,14 +10,13 @@ import setTitle from '../../decorators/setTitle'
 @setTitle('John-David Dalton | Events')
 export default class EventsView extends React.PureComponent {
   renderChildren () {
-	  const {events} = this.props
+    const {events} = this.props
     return events.map(event => <Event event={event} />)
   }
 
   render () {
     return (
       <Container>
-        Events View
         {this.renderChildren()}
       </Container>
     )
