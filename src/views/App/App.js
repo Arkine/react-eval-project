@@ -9,11 +9,14 @@ import styled from 'styled-components'
 import Sidebar from 'components/Sidebar'
 import ImageBlock from 'components/common/ImageBlock'
 import Loading from 'components/common/Loading'
+import SlidingCards from '../../components/testing/slidingCards'
+
 import UserView from './UserView'
 
 import {getUser} from 'actions/userActions'
 import {getRepos} from 'actions/reposActions'
 import {getEvents} from 'actions/eventsActions'
+
 
 const Container = styled.div`
   display: flex;
@@ -68,12 +71,14 @@ export default class App extends Component {
     console.log(this.props);
     return (
       <Container>
-        <Loading isLoading={isLoading} />
+        <Loading isLoading={isLoading} text={'Loading...'} />
         <Sidebar>
           <UserView user={user} />
         </Sidebar>
         <Container.Content>
-          <Stage></Stage>
+          <Stage>
+            <SlidingCards options={{ autoAlpha: 1, y: -20 }} items={repos.data} />
+          </Stage>
         </Container.Content>
       </Container>
     )
