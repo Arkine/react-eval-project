@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 const Container = styled.div`
-  position: sticky;
-  top: 0;
   display: flex;
   justify-content: center;
 

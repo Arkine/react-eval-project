@@ -69,12 +69,12 @@ export default class EventsView extends React.Component {
       <Container>
         <Container.Content>
           <Container.Header>
-            <SelectOption
+            {/* <SelectOption
               options={eventTypes}
               onSelect={this.handleTypeSelect}
               label='Filter By:'
               allowNone
-            />
+            /> */}
           </Container.Header>
           <Container.Body>{this.renderEvents()}</Container.Body>
           <Container.Footer></Container.Footer>

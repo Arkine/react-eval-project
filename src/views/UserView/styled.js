@@ -6,6 +6,8 @@ export const Container = styled.div`
   justify-content: flex-start;
 `
 Container.Content = styled.div`
+  position: sticky;
+  top: 0;
   background-color: #fff;
   border-radius: 10px;
 
