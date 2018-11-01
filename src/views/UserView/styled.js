@@ -9,7 +9,7 @@ Container.Content = styled.div`
   background-color: #fff;
   border-radius: 10px;
 
-  padding: 1rem;
+  padding: 1rem 1rem 2rem;
 `
 Container.Username = styled.h1`
   font-size: ${props => props.theme.fonts.h1.desktop};

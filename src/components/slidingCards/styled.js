@@ -15,8 +15,6 @@ export const Card = styled.div`
   flex-basis: 20rem;
   flex-grow: 1;
   margin: 1rem;
-  height: 200px;
-  width: 200px;
 
   opacity: 0;
   visibility: hidden;
