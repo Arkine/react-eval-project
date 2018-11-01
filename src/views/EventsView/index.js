@@ -9,6 +9,7 @@ import {Container} from './styled'
 import setTitle from '../../decorators/setTitle'
 import transitionRoute from '../../decorators/transitionRoute'
 import SlidingCards from '../../components/SlidingCards'
+import Pagination from '../../components/common/Pagination';
 
 @setTitle('John-David Dalton | Events')
 @transitionRoute()
@@ -17,17 +18,23 @@ export default class EventsView extends React.Component {
     super(props)
 
     this.state = {
-      filter: null
+      filter: null,
+      page: 0
     }
   }
 
   getEvents () {
-    const {events} = this.props
+    let {events, perPage} = this.props
+    // If the filter is not set and is not set to all  
     if (this.state.filter && this.state.filter !== 'all') {
-      return this.filterEvents(events)
+      // Filter out events that we want
+      events = this.filterEvents(events)
+      // Calculate start and end indexes  
     }
 
-    return events
+    const start = this.state.page * perPage
+    const end = start + perPage
+    return events.slice(start, end)
   }
 
   filterEvents (events) {
@@ -62,8 +69,28 @@ export default class EventsView extends React.Component {
     return uniqueKeys.values()
   }
 
+  handleNavChange = e => {
+    const {events, perPage} = this.props
+    const change = e.target.dataset.increment
+    const totalPages = Math.ceil(events.length / perPage)
+
+    const nextPage = this.state.page + change
+    if (nextPage <= 0 || nextPage > totalPages) {
+      return
+    }
+    
+    this.setState({
+      page: nextPage
+    })
+  }
+
+  handlePageChange = e => {
+
+  }
+ 
   render () {
-    const eventTypes = this.getEventTypes()
+    // const eventTypes = this.getEventTypes()
+    const currentPage = this.state.page === 0 ? 1 : this.state.page
 
     return (
       <Container>
@@ -77,7 +104,15 @@ export default class EventsView extends React.Component {
             /> */}
           </Container.Header>
           <Container.Body>{this.renderEvents()}</Container.Body>
-          <Container.Footer></Container.Footer>
+          <Container.Footer>
+            <Pagination
+              pageCount={10}
+              showMax={3}
+              currentPage={currentPage}
+              onNavChange={this.handleNavChange}
+              onPageClick={this.handlePageChange}
+            />
+          </Container.Footer>
         </Container.Content>
       </Container>
     )
@@ -85,9 +120,11 @@ export default class EventsView extends React.Component {
 }
 
 EventsView.defaultProps = {
-  events: []
+  events: [],
+  perPage: 20
 }
 
 EventsView.propTypes = {
-  events: PropTypes.array.isRequired
+  events: PropTypes.array.isRequired,
+  perPage: PropTypes.number
 }
