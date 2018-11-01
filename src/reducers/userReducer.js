@@ -1,4 +1,4 @@
-import {SET_USER, GET_USER} from 'constants/actionTypes'
+import {SET_USER, GET_USER, GET_USER_FAIL} from 'constants/actionTypes'
 
 const initialState = {
   loading: false,
@@ -7,6 +7,12 @@ const initialState = {
 
 export default function users (state = initialState, action) {
   switch (action.type) {
+    case GET_USER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      }
     case GET_USER:
       return {
         ...state,
