@@ -5,6 +5,7 @@ export default {
     blue_dark: '#0d98cf',
     blue_light: '#08a0d9',
     gray: '#6c6e70',
+    gray_light: '#CCC',
     charcoal: '#2e3033'
   },
   fonts: {

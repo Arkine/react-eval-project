@@ -1,18 +1,8 @@
 import React from 'react'
 import styled, {keyframes} from 'styled-components'
 import PropTypes from 'prop-types'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faSpinner} from '@fortawesome/free-solid-svg-icons'
-import { TweenLite, TimelineMax } from 'gsap';
+import { TimelineMax } from 'gsap'
 
-const spin = keyframes`
-  from {transform: rotate(0deg)}
-  to {transform: rotate(360deg)}
-`
-// const fadeIn = keyframes`
-//   from {opacity: 0}
-//   to {opacity: 1}
-// `
 const fadeOut = keyframes`
   from {opacity: 1}
   to {opacity: 0}
@@ -36,6 +26,7 @@ const Container = styled.div`
 
   visibility: ${props => props.isLoading ? 'visible' : 'hidden'};
   animation: ${props => props.isLoading ? null : fadeOut} 0.5s linear;
+
   transition: visibility 0.5s linear;
 `
 Container.Text = styled.div`
@@ -60,14 +51,9 @@ Dot.Text = styled.span`
   transform: scale(0);
   font-size: 1.25rem;
 `
-
-const Icon = styled(FontAwesomeIcon)`
-  font-size: 4rem;
-  animation: ${spin} 2s linear infinite;
-`
 export default class Loading extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.overlay = React.createRef()
     this.tl = new TimelineMax({ repeat: -1 })
@@ -75,8 +61,8 @@ export default class Loading extends React.Component {
     this.letters = []
   }
 
-  componentDidMount() {
-    const {duration, stagger, textDelay} = this.props;
+  componentDidMount () {
+    const {duration, stagger, textDelay} = this.props
 
     this.tl
       .staggerTo(this.dots, duration, {y: -70, width: 70, height: 70, borderRadius: 10, rotation: 0}, stagger)
@@ -85,14 +71,18 @@ export default class Loading extends React.Component {
       .staggerTo(this.letters, duration, {opacity: 0, scale: 0}, stagger, textDelay)
   }
 
-  addDotRef = (el) => {
+  addDotRef = el => {
     this.dots.push(el)
   }
-  addLetterRef = (el) => {
+  addLetterRef = el => {
     this.letters.push(el)
   }
 
-  renderText() {
+  createOverlayRef = el => {
+    this.overlay = el
+  }
+
+  renderText () {
     const text = 'LOADING'
 
     const textArray = [...text]
@@ -102,7 +92,7 @@ export default class Loading extends React.Component {
 
   render () {
     return (
-      <Container isLoading={this.props.isLoading} ref={el => this.overlay = el} >
+      <Container isLoading={this.props.isLoading} ref={this.createOverlayRef} >
         <Container.Text>
           {this.renderText()}
         </Container.Text>
@@ -115,7 +105,7 @@ Loading.defaultProps = {
   isLoading: false,
   duration: 0.6,
   stagger: 0.08,
-  textDelay: "-=1"
+  textDelay: '-=1'
 }
 
 Loading.propTypes = {

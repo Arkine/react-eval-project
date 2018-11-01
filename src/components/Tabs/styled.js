@@ -7,7 +7,9 @@ TabsContainer.Nav = styled.ul`
   flex-flow: row wrap;
   padding: 0;
 `
-TabsContainer.Content = styled.div``
+TabsContainer.Content = styled.div`
+  overflow: hidden;
+`
 
 // Singe tab
 export const TabContainer = styled.li`

@@ -1,15 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
-const Container = styled.div``
+import {Container} from './styled'
 
 export default class Repo extends React.PureComponent {
   render () {
     const {repo} = this.props
     return (
       <Container>
-        <h3>{repo.name}</h3>
+        <Container.Title>{repo.name}</Container.Title>
       </Container>
     )
   }

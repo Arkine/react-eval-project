@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 
 import Repo from '../../components/Repo'
 
-import {Container} from './styled'
 import setTitle from '../../decorators/setTitle'
+import transitionRoute from '../../decorators/transitionRoute'
+import SlidingCards from '../../components/testing/slidingCards';
 
 @setTitle('John-David Dalton | Repositories')
+@transitionRoute()
 export default class ReposView extends React.PureComponent {
   renderChildren () {
     const {repos} = this.props
@@ -16,9 +18,7 @@ export default class ReposView extends React.PureComponent {
 
   render () {
     return (
-      <Container>
-        {this.renderChildren()}
-      </Container>
+      <SlidingCards items={this.props.repos} />
     )
   }
 }

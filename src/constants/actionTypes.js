@@ -9,3 +9,5 @@ export const SET_USER = 'SET_USER'
 export const GET_EVENTS = 'GET_EVENTS'
 export const GET_EVENTS_FAIL = 'GET_EVENTS_FAIL'
 export const SET_EVENTS = 'SET_EVENTS'
+
+export const APP_LOADED = 'APP_LOADED'

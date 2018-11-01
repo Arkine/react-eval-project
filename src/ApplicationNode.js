@@ -22,7 +22,7 @@ export default class ApplicationNode extends Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <div>
+        <React.Fragment>
           <GlobalStyles />
           <Provider store={store}>
             <Router history={history}>
@@ -31,7 +31,7 @@ export default class ApplicationNode extends Component {
               </Switch>
             </Router>
           </Provider>
-        </div>
+        </React.Fragment>
       </ThemeProvider>
     )
   }

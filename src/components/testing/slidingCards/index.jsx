@@ -1,58 +1,60 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { TimelineLite } from 'gsap'
-import { CardsContainer, Card } from './styled'
+import { CardsContainer, Card, DummyCard } from './styled'
+import {connect} from 'react-redux'
+
 /**
  * SlidingCards animated component
- * 
+ *
  * Displays data in animated sliding cards
  */
-export default class SlidingCards extends React.Component {
-  constructor(props) {
+const mapStateToProps = state => ({
+  app: state.app
+})
+@connect(mapStateToProps, null)
+export default class SlidingCards extends React.PureComponent {
+  constructor (props) {
     super(props)
-
-    this.state = {
-      complete: false
-    }
 
     this.tl = new TimelineLite({ paused: true })
     this.cards = []
   }
 
-  componentDidMount() {
-    // this.tl.staggerTo(this.cards, this.props.duration, this.props.options, this.props.stagger)
-    this.tl.staggerTo( this.cards , 0.5, { autoAlpha: 1, y: -20 }, 0.1)
+  componentDidMount () {
+    this.tl.staggerTo(this.cards, this.props.duration, this.props.options, this.props.stagger)
   }
 
-  createRef = (el) => {
+  createRef = el => {
     this.cards.push(el)
   }
 
-  renderChildren() {
+  renderChildren () {
     const {items} = this.props
     if (!items.length) {
       return <span>No Repos</span>
     }
 
-    return this.props.items.map((item, i) => <Card key={`Card-${i}`} ref={this.createRef}>{item.name}</Card>)
+    return this.props.items.map((item, i) => (<Card key={`Card-${i}`} ref={this.createRef}>{item.name}</Card>))
   }
 
   render () {
-    // this.tl.kill().clear().pause(0)
+
+    this.tl.play()
 
     return (
       <CardsContainer>
-        {this.renderChildren()}
+        {this.props.items.map((item, i) => (<Card key={`Card-${i}`} ref={this.createRef}>{item.name}</Card>))}
+        <DummyCard />
       </CardsContainer>
     )
   }
-
 }
 
 SlidingCards.defaultProps = {
-  duration: 5.5,
+  duration: 0.5,
   stagger: 0.1,
-  options: {},
+  options: {autoAlpha: 1, y: -20},
   items: []
 }
 

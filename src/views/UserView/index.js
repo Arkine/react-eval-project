@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {faArchive, faUsers} from '@fortawesome/free-solid-svg-icons'
 
-import Counter from '../../components/Counter'
 import ImageBlock from '../../components/common/ImageBlock'
 import IconText from '../../components/IconText'
 
@@ -20,7 +19,6 @@ export default class UserView extends React.PureComponent {
           <Container.Bio>
             {bio}
           </Container.Bio>
-          <Counter from={0} to={public_repos} />
           <IconText text={`Repositories ${public_repos}`} icon={faArchive} />
           <IconText text={`Followers ${followers}`} icon={faUsers} />
         </Container.Content>

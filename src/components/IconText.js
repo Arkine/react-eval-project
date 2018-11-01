@@ -9,7 +9,7 @@ const Container = styled.div`
 
 const Icon = styled(FontAwesomeIcon)`
   margin-right: 1rem;
-  color: ${props => props.theme.colors.yellow_sun};
+  color: ${props => props.theme.colors.blue_dark};
 `
 
 export default class IconText extends React.PureComponent {

@@ -13,6 +13,6 @@ Event.defaultProps = {
   event: {}
 }
 
-Event.PropTypes = {
+Event.propTypes = {
   event: PropTypes.object.isRequired
 }

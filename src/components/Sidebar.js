@@ -9,11 +9,11 @@ const Container = styled.div`
   justify-content: center;
 
   flex-basis: 15rem;
+  flex-grow: 0;
+
   padding: 0.5rem;
 
   width: 100%;
-  height: 100vh;
-  background-color: ${props => props.theme.colors.blue_light};
 `
 
 export default class Sidebar extends React.PureComponent {
