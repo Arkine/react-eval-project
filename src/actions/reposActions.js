@@ -1,4 +1,4 @@
-import {SET_REPOS, GET_REPOS} from 'constants/actionTypes'
+import {SET_REPOS, GET_REPOS, GET_REPOS_FAIL} from 'constants/actionTypes'
 
 export function getRepos () {
   return (dispatch) => {
@@ -6,11 +6,18 @@ export function getRepos () {
       type: GET_REPOS
     })
 
-    setTimeout(() => {
+    try {
+      setTimeout(() => {
+        dispatch({
+          type: SET_REPOS,
+          payload: require('./repos.json')
+        })
+      }, 1000)
+    } catch (e) {
       dispatch({
-        type: SET_REPOS,
-        payload: require('./repos.json')
+        type: GET_REPOS_FAIL,
+        payload: e
       })
-    }, 1000)
+    }
   }
 }
