@@ -14,6 +14,7 @@ export default createGlobalStyle`
     font-family: ${props => props.theme.fonts.family};
     background-color: ${props => props.theme.colors.charcoal};
     min-height: 100vh;
+    color: ${props => props.theme.colors.charcoal};
   }
 
   #root {

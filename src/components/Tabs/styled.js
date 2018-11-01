@@ -30,4 +30,6 @@ export const TabContainer = styled.li`
     }
   }
 `
-TabContainer.Link = styled.a``
+TabContainer.Link = styled.a`
+  color: ${props => props.theme.colors.charcoal};
+`

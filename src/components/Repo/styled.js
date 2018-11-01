@@ -20,7 +20,7 @@ Container.Title = styled.h3`
 
 Container.Language = styled.div`
   position : absolute;
-  top: 0.35rem;
+  top: 0.25rem;
   right: 1rem;
 `
 
@@ -37,7 +37,6 @@ Container.Meta_Label = styled.span`
 Container.Body = styled.div`
   flex-grow: 1;
 `
-
 
 /**
  * Footer

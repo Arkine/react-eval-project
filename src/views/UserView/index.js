@@ -17,7 +17,7 @@ export default class UserView extends React.PureComponent {
           <Container.Username>{name}</Container.Username>
           <ImageBlock image={avatar_url} height={230} width={230} />
           <Container.Bio>
-            {bio}
+            <p>{bio}</p>
           </Container.Bio>
           <IconText text={`Repositories ${public_repos}`} icon={faArchive} />
           <IconText text={`Followers ${followers}`} icon={faUsers} />
