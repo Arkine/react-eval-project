@@ -16,6 +16,7 @@ export const TabContainer = styled.li`
   padding: 0.5rem;
 
   border-bottom: 2px solid ${props => props.isActive ? props.theme.colors.blue_dark : '#fff'};
+  border-radius: 4px;
 
   list-style: none;
 

@@ -15,7 +15,7 @@ const Icon = styled(FontAwesomeIcon)`
 export default class IconText extends React.PureComponent {
   render () {
     return (
-      <Container><Icon icon={this.props.icon} /><span>{this.props.text}</span></Container>
+      <Container {...this.props}><Icon icon={this.props.icon} /><span>{this.props.text}</span></Container>
     )
   }
 }

@@ -29,10 +29,10 @@ export default class Repo extends React.PureComponent {
           <p>{repo.description}</p>
         </Container.Body>
         <Container.Footer>
-          <Container.Footer_item aria-label='Watchers'><IconText icon={faUsers} text={repo.watchers_count} /></Container.Footer_item>
-          <Container.Footer_item aria-label='Issues'><IconText icon={faExclamation} text={repo.open_issues} /></Container.Footer_item>
-          <Container.Footer_item aria-label='Stars'><IconText icon={faStar} text={repo.stargazers_count} /></Container.Footer_item>
-          <Container.Footer_item aria-label='Forks'><IconText icon={faCodeBranch} text={repo.forks_count} /></Container.Footer_item>
+          <Container.Footer_item><IconText icon={faUsers} text={repo.watchers_count} aria-label='Watchers' title='Watchers' /></Container.Footer_item>
+          <Container.Footer_item><IconText icon={faExclamation} text={repo.open_issues} aria-label='Open Issues' title='Open Issues' /></Container.Footer_item>
+          <Container.Footer_item><IconText icon={faStar} text={repo.stargazers_count} aria-label='Stars' title='Stars' /></Container.Footer_item>
+          <Container.Footer_item><IconText icon={faCodeBranch} text={repo.forks_count} aria-label='Forks' title='Forks' /></Container.Footer_item>
         </Container.Footer>
       </Container>
     )
