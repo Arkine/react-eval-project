@@ -76,9 +76,8 @@ export default class Loading extends React.Component {
   }
 
   componentDidMount() {
-    const duration = 0.6
-    const stagger = 0.08
-    const textDelay = "-=1"
+    const {duration, stagger, textDelay} = this.props;
+
     this.tl
       .staggerTo(this.dots, duration, {y: -70, width: 70, height: 70, borderRadius: 10, rotation: 0}, stagger)
       .staggerTo(this.letters, duration, {opacity: 1, scale: 1}, stagger, textDelay)
@@ -113,9 +112,15 @@ export default class Loading extends React.Component {
 }
 
 Loading.defaultProps = {
-  isLoading: false
+  isLoading: false,
+  duration: 0.6,
+  stagger: 0.08,
+  textDelay: "-=1"
 }
 
 Loading.propTypes = {
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  duration: PropTypes.number,
+  stagger: PropTypes.number,
+  textDelay: PropTypes.string
 }
