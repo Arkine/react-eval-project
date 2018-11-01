@@ -4,7 +4,7 @@ import ApplicationNode from './ApplicationNode'
 import {unregister} from './services/registerServiceWorker'
 import store from './services/store'
 
-const render = (Component) => {
+const render = Component => {
   ReactDOM.render(
     <Component store={store} />,
     document.getElementById('root')
