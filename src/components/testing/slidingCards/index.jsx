@@ -30,21 +30,27 @@ export default class SlidingCards extends React.PureComponent {
   }
 
   renderChildren () {
-    const {items} = this.props
+    const {items, contentComponent: Component} = this.props
     if (!items.length) {
       return <span>No Repos</span>
     }
 
-    return this.props.items.map((item, i) => (<Card key={`Card-${i}`} ref={this.createRef}>{item.name}</Card>))
+    return this.props.items.map((item, i) => (<Card key={`Card-${i}`} ref={this.createRef}><Component /></Card>))
   }
 
   render () {
+    const {items, contentComponent: Component} = this.props
 
     this.tl.play()
 
     return (
       <CardsContainer>
-        {this.props.items.map((item, i) => (<Card key={`Card-${i}`} ref={this.createRef}>{item.name}</Card>))}
+        {
+          items.map((item, i) =>
+            <Card key={`Card-${i}`} ref={this.createRef}>
+              <Component />
+            </Card>)
+        }
         <DummyCard />
       </CardsContainer>
     )
@@ -62,5 +68,6 @@ SlidingCards.propTypes = {
   duration: PropTypes.number,
   stagger: PropTypes.number,
   options: PropTypes.object,
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  contentComponent: PropTypes.element.isRequired
 }
