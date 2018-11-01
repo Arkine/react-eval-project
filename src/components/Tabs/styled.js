@@ -19,6 +19,8 @@ export const TabContainer = styled.li`
 
   list-style: none;
 
+  transition: background-color 0.2s ease-in-out;
+
   &:hover {
     cursor: pointer;
     background-color: ${props => props.theme.colors.blue_dark};

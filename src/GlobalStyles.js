@@ -24,4 +24,17 @@ export default createGlobalStyle`
     font-weight: 700;
     font-size: ${props => props.theme.fonts.h1.desktop};
   }
+
+  a {
+    color: ${props => props.theme.colors.blue_light};
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  p {
+    line-height: 1.5;
+  }
 `

@@ -4,7 +4,7 @@ export const CardsContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 `
 
 export const Card = styled.div`
@@ -27,7 +27,6 @@ export const Card = styled.div`
 
   &:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    cursor: pointer;
   }
 `
 

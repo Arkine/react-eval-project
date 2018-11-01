@@ -11,7 +11,7 @@ import Repo from '../../components/Repo'
 export default class ReposView extends React.PureComponent {
   render () {
     return (
-      <SlidingCards items={this.props.repos} contentComponent={Repo} />
+      <SlidingCards items={this.props.repos} contentComponent={Repo} propKey='repo' />
     )
   }
 }
