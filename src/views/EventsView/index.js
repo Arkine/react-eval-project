@@ -10,6 +10,7 @@ import setTitle from '../../decorators/setTitle'
 import transitionRoute from '../../decorators/transitionRoute'
 import SlidingCards from '../../components/SlidingCards'
 import Pagination from '../../components/common/Pagination';
+import LineGraph from '../../components/Data/LineGraph';
 
 @setTitle('John-David Dalton | Events')
 @transitionRoute()
@@ -44,85 +45,49 @@ export default class EventsView extends React.Component {
 
     const start = this.state.page * perPage
     const end = start + perPage
-    return events.slice(start, end)
+    // return events.slice(start, end)
+    return events
   }
 
   filterEvents (events) {
     return events.filter(event => event.type.split(/(?=[A-Z])/).join(' ') === this.state.filter)
   }
 
-  getMonthlyActivity () {
+  getEventsByDate () {
     let events = this.getEvents()
-  }
-  renderEvents () {
-    const events = this.getEvents()
+    const dataSets = new Map()
 
-    return <SlidingCards items={events} contentComponent={Event} propsKey={event} />
-  }
-  handleTypeSelect = e => {
-    this.setState({
-      filter: e.target.value
-    })
-  }
-  getEventTypes () {
-    const {events} = this.props
-    const uniqueKeys = new Map()
+    // Parse events to group them
+    events.map(event => {
+      const date = new Date(event.created_at)
+      // Y M D
+      const keyDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`
 
-    for (const event of events) {
-      if (!uniqueKeys.has(event.type)) {
-        uniqueKeys.set(event.type, {
-          label: event.type.split(/(?=[A-Z])/).join(' ')
+      // If the type is already stored, add it to the type
+      if (dataSets.has(keyDate)) {
+        const storedItem = dataSets.get(keyDate)
+        storedItem.events.push(event)
+      } else {
+        dataSets.set(keyDate, {
+          events: [event]
         })
       }
-    }
-
-    return uniqueKeys.values()
-  }
-
-  handleNavChange = e => {
-    const {events, perPage} = this.props
-    const change = e.target.dataset.increment
-    const totalPages = Math.ceil(events.length / perPage)
-
-    const nextPage = this.state.page + change
-    if (nextPage <= 0 || nextPage > totalPages) {
-      return
-    }
-    
-    this.setState({
-      page: nextPage
     })
+
+    return [...dataSets.entries()]
+  }
+  renderEvents () {
+    const events = this.getEventsByDate()
+
+    return <LineGraph data={events} />
+    // return <SlidingCards items={events} contentComponent={Event} propKey='event' />
   }
 
-  handlePageChange = e => {
-
-  }
- 
   render () {
-    // const eventTypes = this.getEventTypes()
-    const currentPage = this.state.page === 0 ? 1 : this.state.page
-
     return (
       <Container>
         <Container.Content>
-          <Container.Header>
-            {/* <SelectOption
-              options={eventTypes}
-              onSelect={this.handleTypeSelect}
-              label='Filter By:'
-              allowNone
-            /> */}
-          </Container.Header>
           <Container.Body>{this.renderEvents()}</Container.Body>
-          <Container.Footer>
-            <Pagination
-              pageCount={10}
-              showMax={3}
-              currentPage={currentPage}
-              onNavChange={this.handleNavChange}
-              onPageClick={this.handlePageChange}
-            />
-          </Container.Footer>
         </Container.Content>
       </Container>
     )

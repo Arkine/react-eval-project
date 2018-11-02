@@ -49,7 +49,7 @@ export default class SlidingCards extends React.PureComponent {
   renderChildren () {
     const {items, contentComponent: Component, propKey} = this.props
 
-    return this.props.items.map((item, i) => (<Card key={`Card-${i}`} ref={this.createRef}><Component {...{[propKey]: item}} /></Card>))
+    return items.map((item, i) => (<Card key={`Card-${i}`} ref={this.createRef}><Component {...{[propKey]: item}} /></Card>))
   }
 
   render () {

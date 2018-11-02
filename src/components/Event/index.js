@@ -14,7 +14,7 @@ export default class Event extends React.PureComponent {
 
   render () {
     const {event} = this.props
-
+    console.log({event})
     return (
       <Container>
         <Container.Header>

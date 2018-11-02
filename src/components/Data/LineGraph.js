@@ -1,17 +1,122 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import * as d3 from 'd3'
 
-const Container = styled.div``
+const Container = styled.div`
+  overflow: visible;
+`
+
+Container.Chart = styled.svg`
+  border: 1px solid red
+`
 
 export default class LineGraph extends React.PureComponent {
+  static propTypes = {
+    data: PropTypes.array.isRequired
+    // xScale: PropTypes.number.isRequired,
+    // yScale: PropTypes.number.isRequired
+  }
+  constructor (props) {
+    super(props)
+
+    this.chart = React.createRef()
+  }
+
+  componentDidMount () {
+    this.renderChart()
+  }
+
+  createChartRef = el => {
+    this.chart = el
+  }
+
+  getData () {
+    return this.parseData(this.props.data)
+  }
+
+  parseData (data) {
+    const items = []
+    console.log({allData: data})
+    for (const [key, item] of data) {
+      console.log({key, item})
+      items.push({
+        date: new Date(key),
+        value: item.events.length
+      })
+    }
+
+    return items
+  }
+  createContainerRef = el => {
+    this.container = el
+  }
   renderChart () {
-    const {data} = this.props
+    const data = this.getData()
+
+    const margin = {
+      top: 20,
+      right: 20,
+      bottom: 30,
+      left: 50
+    }
+    const svgWidth = this.container.clientWidth
+    const svgHeight =  400
+    const width = svgWidth - margin.left - margin.right
+    const height = svgHeight - margin.top - margin.bottom
+
+    const svg = d3.select(this.chart)
+      .attr('width', svgWidth)
+      .attr('height', svgHeight)
+
+    const g = svg.append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+    const x = d3.scaleTime().rangeRound([0, width])
+    const y = d3.scaleLinear().rangeRound([height, 0])
+
+    const xAxis = d3.axisBottom().scale(x).ticks(4)
+    const yAxis = d3.axisLeft().scale(y).ticks(5)
+
+    const line = d3.line()
+      .x(d => x(d.date))
+      .y(d => y(d.value))
+
+
+    x.domain(d3.extent(data, d => d.date))
+    y.domain(d3.extent(data, d => d.value))
+
+    // Append Xaxis
+    g.append('g')
+      .attr('transform', `translate(0, ${height})`)
+      .call(xAxis)
+      .select('.domain')
+    
+    // Append Yaxis
+    g.append('g')
+      .call(yAxis)
+      .append('text')
+      .attr('fill', '#000')
+      .attr('transform', 'rotate(-90)')
+      .attr('y', 6)
+      .attr('dy', '0.71em')
+      .attr('text-anchor', 'end')
+      .text('# of events')
+    // for (const dataSet of data) {
+      g.append('path')
+        .datum(data)
+        .attr('fill', 'none')
+        .attr('stroke', 'steelblue')
+        .attr('stroke-linejoin', 'round')
+        .attr('stroke-linecap', 'round')
+        .attr('stroke-width', 1.5)
+        .attr('d', line)
+    // }  
   }
   render () {
     return (
-      <Container>
-        {this.renderChart()}
+      <Container ref={this.createContainerRef}>
+        <svg ref={this.createChartRef} />
       </Container>
     )
   }

@@ -96,7 +96,7 @@ export default class App extends Component {
                   </Route>
                 </Switch>
               </Router>
-            </Stage.Content>s
+            </Stage.Content>
           </Stage>
         </Container.Content>
       </Container>
