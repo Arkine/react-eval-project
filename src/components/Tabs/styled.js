@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {NavLink} from 'react-router-dom'
 
 // Tabs Container
 export const TabsContainer = styled.div``
@@ -31,6 +32,6 @@ export const TabContainer = styled.li`
     }
   }
 `
-TabContainer.Link = styled.a`
+TabContainer.Link = styled(NavLink)`
   color: ${props => props.theme.colors.charcoal};
 `

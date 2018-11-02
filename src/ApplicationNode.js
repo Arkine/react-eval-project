@@ -28,6 +28,7 @@ export default class ApplicationNode extends Component {
             <Router history={history}>
               <Switch>
                 <Route exact path='/' component={App} />
+                <Route exact path='/:page' component={App} />
               </Switch>
             </Router>
           </Provider>

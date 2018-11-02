@@ -2,10 +2,11 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Router, Route, Switch} from 'react-router-dom'
 
-import Sidebar from 'components/Sidebar'
 import Loading from 'components/common/Loading'
+import Navigation from 'components/common/Navigation'
+import Sidebar from 'components/Sidebar'
 import Tabs from '../../components/Tabs'
 import Tab from '../../components/Tabs/Tab'
 
@@ -13,6 +14,7 @@ import UserView from '../UserView'
 import EventsView from '../EventsView'
 import ReposView from '../ReposView'
 
+import history from '../../services/history'
 
 import {getUser} from 'actions/userActions'
 import {getRepos} from 'actions/reposActions'
@@ -20,6 +22,8 @@ import {getEvents} from 'actions/eventsActions'
 import {updateApp} from 'actions/appActions'
 
 import {Container, Stage} from './styled'
+
+import navItems from './navItems'
 
 
 const mapStateToProps = state => ({
@@ -51,13 +55,14 @@ export default class App extends Component {
     getRepos()
     getEvents()
     updateApp()
+
+    history.push('/repositories')
   }
 
 
   render () {
     const {user, events, repos, app} = this.props
     const isLoading = (user.loading || events.loading || repos.loading)
-
     if (app.loading || isLoading) {
       return <Loading isLoading={isLoading} text={'Loading...'} />
     }
@@ -69,14 +74,27 @@ export default class App extends Component {
         </Sidebar>
         <Container.Content>
           <Stage>
-            <Tabs>
-              <Tab text='Repositories'>
+            <Navigation links={navItems} currentSlug={this.props.location.pathname} />
+            <Stage.Content>
+              <Router history={history}>
+                <Switch>
+                  <Route exact path="/repositories">
+                    { ({ match }) => <ReposView show={match !== null} repos={repos.data} /> }
+                  </Route>
+                  <Route exact path="/events">
+                    { ({ match }) => <EventsView show={match !== null} events={events.data} /> }
+                  </Route>
+                </Switch>
+              </Router>
+            </Stage.Content>
+            {/* <Tabs>
+              <Tab text='Repositories' to='/repositories'>
                 <ReposView repos={repos.data} />
               </Tab>
-              <Tab text='Events'>
+              <Tab text='Events' to='/events'>
                 <EventsView events={events.data} />
               </Tab>
-            </Tabs>
+            </Tabs> */}
           </Stage>
         </Container.Content>
       </Container>

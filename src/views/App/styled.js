@@ -26,3 +26,5 @@ export const Stage = styled.div`
   background-color: white;
   border-radius: 10px;
 `
+
+Stage.Content = styled.div``
