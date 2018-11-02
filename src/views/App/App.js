@@ -42,12 +42,6 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 export default class App extends Component {
-  static propTypes = {
-    getEvents: PropTypes.func.isRequired,
-    getRepos: PropTypes.func.isRequired,
-    getUser: PropTypes.func.isRequired
-  }
-
   componentDidMount () {
     const {getUser, getRepos, getEvents, updateApp} = this.props
 
@@ -55,8 +49,6 @@ export default class App extends Component {
     getRepos()
     getEvents()
     updateApp()
-
-    history.push('/repositories')
   }
 
 
@@ -112,6 +104,10 @@ App.propTypes = {
   user: PropTypes.object.isRequired,
   events: PropTypes.object.isRequired,
   repos: PropTypes.object.isRequired,
+  getEvents: PropTypes.func.isRequired,
+  getRepos: PropTypes.func.isRequired,
+  getUser: PropTypes.func.isRequired,
+  updateApp: PropTypes.func.isRequired,
   app: PropTypes.shape({
     loading: PropTypes.bool
   })
