@@ -74,9 +74,9 @@ export default class LineGraph extends React.PureComponent {
 
     const margin = {
       top: 40,
-      right: 20,
+      right: 32,
       bottom: 40,
-      left: 20
+      left: 32
     }
     const svgWidth = this.container.clientWidth
     const svgHeight = 450
