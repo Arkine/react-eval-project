@@ -5,7 +5,7 @@ import setTitle from '../../decorators/setTitle'
 import transitionRoute from '../../decorators/transitionRoute'
 
 import SlidingCards from '../../components/SlidingCards'
-import SearchBox from '../../components/common/SearchBox'
+// import SearchBox from '../../components/common/SearchBox'
 import Repo from '../../components/Repo'
 
 import { Container } from './styled'
@@ -13,6 +13,19 @@ import { Container } from './styled'
 @setTitle('John-David Dalton | Repositories')
 @transitionRoute()
 export default class ReposView extends React.Component {
+  static propTypes = {
+    repos: PropTypes.array.isRequired
+  }
+
+  static defaultProps = {
+    events: [],
+    perPage: 20
+  }
+
+  static defaultProps = {
+    repos: []
+  }
+
   constructor (props) {
     super(props)
 
@@ -63,10 +76,10 @@ export default class ReposView extends React.Component {
   }
 }
 
-ReposView.defaultProps = {
-  repos: []
-}
+// ReposView.defaultProps = {
+//   repos: []
+// }
 
-ReposView.propTypes = {
-  repos: PropTypes.array.isRequired
-}
+// ReposView.propTypes = {
+//   repos: PropTypes.array.isRequired
+// }

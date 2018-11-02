@@ -6,6 +6,14 @@ import {Container} from './styled'
 import IconText from '../../components/IconText'
 
 export default class Repo extends React.PureComponent {
+  static defaultProps = {
+    repo: {}
+  }
+
+  static propTypes = {
+    repo: PropTypes.object.isRequired
+  }
+
   render () {
     const {repo} = this.props
 
@@ -39,10 +47,10 @@ export default class Repo extends React.PureComponent {
   }
 }
 
-Repo.defaultProps = {
-  repo: {}
-}
+// Repo.defaultProps = {
+//   repo: {}
+// }
 
-Repo.propTypes = {
-  repo: PropTypes.object.isRequired
-}
+// Repo.propTypes = {
+//   repo: PropTypes.object.isRequired
+// }

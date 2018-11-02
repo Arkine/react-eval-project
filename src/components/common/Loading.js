@@ -52,6 +52,20 @@ Dot.Text = styled.span`
   font-size: 1.25rem;
 `
 export default class Loading extends React.Component {
+  static defaultProps = {
+    isLoading: false,
+    duration: 0.6,
+    stagger: 0.08,
+    textDelay: '-=1'
+  }
+
+  static propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    duration: PropTypes.number,
+    stagger: PropTypes.number,
+    textDelay: PropTypes.string
+  }
+
   constructor (props) {
     super(props)
 
@@ -101,16 +115,16 @@ export default class Loading extends React.Component {
   }
 }
 
-Loading.defaultProps = {
-  isLoading: false,
-  duration: 0.6,
-  stagger: 0.08,
-  textDelay: '-=1'
-}
+// Loading.defaultProps = {
+//   isLoading: false,
+//   duration: 0.6,
+//   stagger: 0.08,
+//   textDelay: '-=1'
+// }
 
-Loading.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  duration: PropTypes.number,
-  stagger: PropTypes.number,
-  textDelay: PropTypes.string
-}
+// Loading.propTypes = {
+//   isLoading: PropTypes.bool.isRequired,
+//   duration: PropTypes.number,
+//   stagger: PropTypes.number,
+//   textDelay: PropTypes.string
+// }

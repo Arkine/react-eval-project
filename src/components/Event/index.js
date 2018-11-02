@@ -4,6 +4,14 @@ import PropTypes from 'prop-types'
 import {Container} from './styled'
 
 export default class Event extends React.PureComponent {
+  static defaultProps = {
+    event: {}
+  }
+
+  static propTypes = {
+    event: PropTypes.object.isRequired
+  }
+
   render () {
     const {event} = this.props
 
@@ -22,10 +30,10 @@ export default class Event extends React.PureComponent {
   }
 }
 
-Event.defaultProps = {
-  event: {}
-}
+// Event.defaultProps = {
+//   event: {}
+// }
 
-Event.propTypes = {
-  event: PropTypes.object.isRequired
-}
+// Event.propTypes = {
+//   event: PropTypes.object.isRequired
+// }

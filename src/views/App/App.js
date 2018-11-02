@@ -42,6 +42,24 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 export default class App extends Component {
+  static defaultProps = {
+    user: {},
+    events: {},
+    repos: {}
+  }
+
+  static propTypes = {
+    user: PropTypes.object.isRequired,
+    events: PropTypes.object.isRequired,
+    repos: PropTypes.object.isRequired,
+    getEvents: PropTypes.func.isRequired,
+    getRepos: PropTypes.func.isRequired,
+    getUser: PropTypes.func.isRequired,
+    updateApp: PropTypes.func.isRequired,
+    app: PropTypes.shape({
+      loading: PropTypes.bool
+    })
+  }
   componentDidMount () {
     const {getUser, getRepos, getEvents, updateApp} = this.props
 
@@ -78,15 +96,7 @@ export default class App extends Component {
                   </Route>
                 </Switch>
               </Router>
-            </Stage.Content>
-            {/* <Tabs>
-              <Tab text='Repositories' to='/repositories'>
-                <ReposView repos={repos.data} />
-              </Tab>
-              <Tab text='Events' to='/events'>
-                <EventsView events={events.data} />
-              </Tab>
-            </Tabs> */}
+            </Stage.Content>s
           </Stage>
         </Container.Content>
       </Container>
@@ -94,21 +104,21 @@ export default class App extends Component {
   }
 }
 
-App.defaultProps = {
-  user: {},
-  events: {},
-  repos: {}
-}
+// App.defaultProps = {
+//   user: {},
+//   events: {},
+//   repos: {}
+// }
 
-App.propTypes = {
-  user: PropTypes.object.isRequired,
-  events: PropTypes.object.isRequired,
-  repos: PropTypes.object.isRequired,
-  getEvents: PropTypes.func.isRequired,
-  getRepos: PropTypes.func.isRequired,
-  getUser: PropTypes.func.isRequired,
-  updateApp: PropTypes.func.isRequired,
-  app: PropTypes.shape({
-    loading: PropTypes.bool
-  })
-}
+// App.propTypes = {
+//   user: PropTypes.object.isRequired,
+//   events: PropTypes.object.isRequired,
+//   repos: PropTypes.object.isRequired,
+//   getEvents: PropTypes.func.isRequired,
+//   getRepos: PropTypes.func.isRequired,
+//   getUser: PropTypes.func.isRequired,
+//   updateApp: PropTypes.func.isRequired,
+//   app: PropTypes.shape({
+//     loading: PropTypes.bool
+//   })
+// }

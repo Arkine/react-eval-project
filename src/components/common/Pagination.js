@@ -41,6 +41,18 @@ Container.Navigation_button = styled.span`
 `
 
 export default class Pagination extends React.PureComponent {
+  static defaultProps = {
+    showMax: 3
+  }
+
+  static propTypes = {
+    pageCount: PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired,
+    onNavChange: PropTypes.func.isRequired,
+    onPageClick: PropTypes.func.isRequired,
+    showMax: PropTypes.number
+  }
+
   renderPageNumbers () {
     const {pageCount, showMax, currentPage} = this.props
     const out = []
@@ -76,14 +88,14 @@ export default class Pagination extends React.PureComponent {
   }
 }
 
-Pagination.defaultProps = {
-  showMax: 3
-}
+// Pagination.defaultProps = {
+//   showMax: 3
+// }
 
-Pagination.propTypes = {
-  pageCount: PropTypes.number.isRequired,
-  currentPage: PropTypes.number.isRequired,
-  onNavChange: PropTypes.func.isRequired,
-  onPageClick: PropTypes.func.isRequired,
-  showMax: PropTypes.number
-}
+// Pagination.propTypes = {
+//   pageCount: PropTypes.number.isRequired,
+//   currentPage: PropTypes.number.isRequired,
+//   onNavChange: PropTypes.func.isRequired,
+//   onPageClick: PropTypes.func.isRequired,
+//   showMax: PropTypes.number
+// }

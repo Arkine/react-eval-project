@@ -15,6 +15,10 @@ const Container = styled.div`
 `
 
 export default class Sidebar extends React.PureComponent {
+  static propTypes = {
+    children: PropTypes.element.isRequired
+  }
+
   render () {
     return (
       <Container>{this.props.children}</Container>
@@ -22,6 +26,6 @@ export default class Sidebar extends React.PureComponent {
   }
 }
 
-Sidebar.propTypes = {
-  children: PropTypes.element.isRequired
-}
+// Sidebar.propTypes = {
+//   children: PropTypes.element.isRequired
+// }

@@ -8,6 +8,16 @@ const Image = styled.img`
 `
 
 export default class ImageBlock extends React.PureComponent {
+  static defaultProps = {
+    image: ''
+  }
+
+  static propTypes = {
+    image: PropTypes.string.isRequired,
+    height: PropTypes.number,
+    width: PropTypes.number
+  }
+
   render () {
     return (
       <Image src={this.props.image} height={this.props.height} width={this.props.width} />
@@ -15,12 +25,12 @@ export default class ImageBlock extends React.PureComponent {
   }
 }
 
-ImageBlock.defaultProps = {
-  image: ''
-}
+// ImageBlock.defaultProps = {
+//   image: ''
+// }
 
-ImageBlock.propTypes = {
-  image: PropTypes.string.isRequired,
-  height: PropTypes.number,
-  width: PropTypes.number
-}
+// ImageBlock.propTypes = {
+//   image: PropTypes.string.isRequired,
+//   height: PropTypes.number,
+//   width: PropTypes.number
+// }

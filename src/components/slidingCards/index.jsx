@@ -14,6 +14,23 @@ const mapStateToProps = state => ({
 })
 @connect(mapStateToProps, null)
 export default class SlidingCards extends React.PureComponent {
+  static defaultProps = {
+    duration: 0.5,
+    stagger: 0.1,
+    options: {autoAlpha: 1, y: -20},
+    items: [],
+    propKey: 'data'
+  }
+
+  static propTypes = {
+    duration: PropTypes.number,
+    stagger: PropTypes.number,
+    options: PropTypes.object,
+    items: PropTypes.array.isRequired,
+    contentComponent: PropTypes.element.isRequired,
+    propKey: PropTypes.string.isRequired
+  }
+
   constructor (props) {
     super(props)
 
@@ -47,19 +64,19 @@ export default class SlidingCards extends React.PureComponent {
   }
 }
 
-SlidingCards.defaultProps = {
-  duration: 0.5,
-  stagger: 0.1,
-  options: {autoAlpha: 1, y: -20},
-  items: [],
-  propKey: 'data'
-}
+// SlidingCards.defaultProps = {
+//   duration: 0.5,
+//   stagger: 0.1,
+//   options: {autoAlpha: 1, y: -20},
+//   items: [],
+//   propKey: 'data'
+// }
 
-SlidingCards.propTypes = {
-  duration: PropTypes.number,
-  stagger: PropTypes.number,
-  options: PropTypes.object,
-  items: PropTypes.array.isRequired,
-  contentComponent: PropTypes.element.isRequired,
-  propKey: PropTypes.string.isRequired
-}
+// SlidingCards.propTypes = {
+//   duration: PropTypes.number,
+//   stagger: PropTypes.number,
+//   options: PropTypes.object,
+//   items: PropTypes.array.isRequired,
+//   contentComponent: PropTypes.element.isRequired,
+//   propKey: PropTypes.string.isRequired
+// }

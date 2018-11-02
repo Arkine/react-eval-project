@@ -14,7 +14,17 @@ import Pagination from '../../components/common/Pagination';
 @setTitle('John-David Dalton | Events')
 @transitionRoute()
 export default class EventsView extends React.Component {
-  constructor(props) {
+  static defaultProps = {
+    events: [],
+    perPage: 20
+  }
+
+  static propTypes = {
+    events: PropTypes.array.isRequired,
+    perPage: PropTypes.number
+  }
+
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -119,12 +129,12 @@ export default class EventsView extends React.Component {
   }
 }
 
-EventsView.defaultProps = {
-  events: [],
-  perPage: 20
-}
+// EventsView.defaultProps = {
+//   events: [],
+//   perPage: 20
+// }
 
-EventsView.propTypes = {
-  events: PropTypes.array.isRequired,
-  perPage: PropTypes.number
-}
+// EventsView.propTypes = {
+//   events: PropTypes.array.isRequired,
+//   perPage: PropTypes.number
+// }

@@ -7,6 +7,17 @@ const Container = styled.div``
 let timeout
 
 export default class SearchBox extends React.PureComponent {
+  static defaultProps = {
+    placeholderText: 'Search...',
+    onInputChange: () => {}
+  }
+
+  static propTypes = {
+    label: PropTypes.string,
+    placeholderText: PropTypes.string,
+    onInputChange: PropTypes.func.isRequired
+  }
+
   handleInputChange = e => {
     e.preventDefault()
 
@@ -26,13 +37,13 @@ export default class SearchBox extends React.PureComponent {
   }
 }
 
-SearchBox.defaultProps = {
-  placeholderText: 'Search...',
-  onInputChange: () => {}
-}
+// SearchBox.defaultProps = {
+//   placeholderText: 'Search...',
+//   onInputChange: () => {}
+// }
 
-SearchBox.propTypes = {
-  label: PropTypes.string,
-  placeholderText: PropTypes.string,
-  onInputChange: PropTypes.func.isRequired
-}
+// SearchBox.propTypes = {
+//   label: PropTypes.string,
+//   placeholderText: PropTypes.string,
+//   onInputChange: PropTypes.func.isRequired
+// }

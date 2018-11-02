@@ -13,6 +13,16 @@ const Icon = styled(FontAwesomeIcon)`
 `
 
 export default class IconText extends React.PureComponent {
+  static defaultProps = {
+    icon: {},
+    text: ''
+  }
+
+  static propTypes = {
+    icon: PropTypes.object.isRequired,
+    text: PropTypes.string.isRequired
+  }
+
   render () {
     return (
       <Container {...this.props}><Icon icon={this.props.icon} /><span>{this.props.text}</span></Container>
@@ -20,12 +30,12 @@ export default class IconText extends React.PureComponent {
   }
 }
 
-IconText.defaultProps = {
-  icon: {},
-  text: ''
-}
+// IconText.defaultProps = {
+//   icon: {},
+//   text: ''
+// }
 
-IconText.propTypes = {
-  icon: PropTypes.object.isRequired,
-  text: PropTypes.string.isRequired
-}
+// IconText.propTypes = {
+//   icon: PropTypes.object.isRequired,
+//   text: PropTypes.string.isRequired
+// }

@@ -11,7 +11,7 @@ const Container = styled.nav`
 Container.Link = styled(NavLink)`
   margin: 0.25rem;
   padding: 0.5rem;
-  
+
   color: ${props => props.theme.colors.dark_blue};
   border-bottom: 2px solid ${props => props.active ? props.theme.colors.dark_blue : 'transparent'};
 
@@ -21,6 +21,13 @@ Container.Link = styled(NavLink)`
 `
 
 export default class Navigation extends React.PureComponent {
+  static propTypes = {
+    links: PropTypes.shape({
+      url: PropTypes.string,
+      label: PropTypes.string
+    }).isRequired
+  }
+
   renderNavLinks () {
     const {links, currentSlug} = this.props
 
@@ -38,9 +45,9 @@ export default class Navigation extends React.PureComponent {
   }
 }
 
-Navigation.propTypes = {
-  links: PropTypes.shape({
-    url: PropTypes.string,
-    label: PropTypes.string
-  }).isRequired
-}
+// Navigation.propTypes = {
+//   links: PropTypes.shape({
+//     url: PropTypes.string,
+//     label: PropTypes.string
+//   }).isRequired
+// }

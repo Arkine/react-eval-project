@@ -8,6 +8,10 @@ import IconText from '../../components/IconText'
 import {Container} from './styled'
 
 export default class UserView extends React.PureComponent {
+  static propTypes = {
+    user: PropTypes.object.isRequired
+  }
+  
   render () {
     const {bio, name, avatar_url, public_repos, followers} = this.props.user
 
@@ -27,6 +31,6 @@ export default class UserView extends React.PureComponent {
   }
 }
 
-UserView.propTypes = {
-  user: PropTypes.object
-}
+// UserView.propTypes = {
+//   user: PropTypes.object
+// }
