@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 export const Container = styled.div`
   display: flex;
@@ -13,8 +14,12 @@ Container.Content = styled.div`
 
   padding: 1rem 1rem 2rem;
 `
-Container.Username = styled.h1`
+Container.Username = styled(Link)`
+  display: block;
   font-size: ${props => props.theme.fonts.h1.desktop};
+  color: ${props => props.theme.colors.blue_dark};
+  font-weight: 700;
+  margin-bottom: 1rem;
 `
 Container.Bio = styled.div`
   margin-top: 1rem;

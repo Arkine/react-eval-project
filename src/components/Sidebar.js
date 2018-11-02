@@ -7,7 +7,6 @@ const Container = styled.div`
   justify-content: center;
 
   flex-basis: 15rem;
-  flex-grow: 0;
 
   padding: 0.5rem;
 
