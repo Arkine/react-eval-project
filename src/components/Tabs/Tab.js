@@ -14,7 +14,6 @@ export default class Tab extends React.PureComponent {
     onClick: PropTypes.func,
     tabIndex: PropTypes.number,
     text: PropTypes.string,
-    to: PropTypes.string.isRequired,
     isActive: PropTypes.bool
   }
 
@@ -22,7 +21,6 @@ export default class Tab extends React.PureComponent {
     return (
       <TabContainer isActive={this.props.isActive}>
         <TabContainer.Link
-          to={this.props.to}
           onClick={event => {
             event.preventDefault()
             this.props.onClick(this.props.tabIndex)

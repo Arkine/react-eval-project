@@ -5,31 +5,17 @@ import * as d3 from 'd3'
 
 const Container = styled.div`
   overflow: visible;
-  padding: 1rem;
 `
 
 Container.Chart = styled.svg`
   border: 1px solid red
 `
 
-const colors = [
-  'steelblue',
-  'green',
-  'red',
-  'purple',
-  'rebeccapurple',
-  'orange',
-  'yellow',
-  'salmon',
-  'chartreuse',
-  'cyan',
-  'gold'
-]
-
 export default class LineGraph extends React.PureComponent {
   static propTypes = {
     data: PropTypes.array.isRequired,
-    title: PropTypes.string
+    title: PropTypes.string,
+    colors: PropTypes.arrayOf(PropTypes.string).isRequired
   }
   constructor (props) {
     super(props)
@@ -76,9 +62,9 @@ export default class LineGraph extends React.PureComponent {
 
     const margin = {
       top: 40,
-      right: 32,
+      right: 26,
       bottom: 40,
-      left: 32
+      left: 26
     }
     const svgWidth = this.container.clientWidth
     const svgHeight = 475
@@ -133,7 +119,7 @@ export default class LineGraph extends React.PureComponent {
       g.append('path')
         .datum(dataSet)
         .attr('fill', 'none')
-        .attr('stroke', colors[index])
+        .attr('stroke', this.props.colors[index])
         .attr('stroke-linejoin', 'round')
         .attr('stroke-linecap', 'round')
         .attr('stroke-width', 2)

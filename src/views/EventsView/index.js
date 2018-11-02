@@ -5,8 +5,11 @@ import setTitle from '../../decorators/setTitle'
 import transitionRoute from '../../decorators/transitionRoute'
 
 import LineGraph from '../../components/Data/LineGraph'
+import Tabs from '../../components/Tabs'
+import Tab from '../../components/Tabs/Tab'
+import { Table } from '../../components/common/Table'
 
-import {Container} from './styled'
+import {Container, colorArr, ColorBlock} from './styled'
 
 @setTitle('John-David Dalton | Events')
 @transitionRoute()
@@ -101,10 +104,76 @@ export default class EventsView extends React.PureComponent {
     return outData
   }
 
+  renderLegend () {
+    const keys = this.getEventTypes()
+
+    return (
+      <Table width={'300px'}>
+        <Table.Head>
+          <Table.Row>
+            <Table.Data>Color</Table.Data>
+            <Table.Data>Event Type</Table.Data>
+          </Table.Row>
+        </Table.Head>
+
+        <Table.Body>
+          {keys.map((eventType, i) => (
+            <Table.Row>
+              <Table.Data>
+                <ColorBlock color={colorArr[i]} />
+              </Table.Data>
+              <Table.Data>
+                {eventType.split(/(?=[A-Z])/).join(' ')}
+              </Table.Data>
+            </Table.Row>
+          )
+          )}
+        </Table.Body>
+      </Table>
+    )
+  }
+
+  renderEventsTable () {
+    const events = this.getEvents()
+    const keys = this.getEventTypes()
+
+    return (
+      <Table width={'550px'}>
+        <Table.Head>
+          <Table.Row>
+            <Table.Data>Color</Table.Data>
+            <Table.Data>Event Type</Table.Data>
+            <Table.Data>Total Events</Table.Data>
+          </Table.Row>
+        </Table.Head>
+
+        <Table.Body>
+          {keys.map((eventType, i) => {
+            const count = events.reduce((acc, next) => acc + (next.type === eventType), 0)
+
+            return (
+              <Table.Row>
+                <Table.Data>
+                  <ColorBlock color={colorArr[i]} />
+                </Table.Data>
+                <Table.Data>
+                  {eventType.split(/(?=[A-Z])/).join(' ')}
+                </Table.Data>
+                <Table.Data>
+                  {count}
+                </Table.Data>
+              </Table.Row>
+            )
+          })}
+        </Table.Body>
+      </Table>
+    )
+  }
+
   renderEventsGraph () {
     const events = this.getEventsByDate()
 
-    return <LineGraph data={events} title={'Recent Events'} />
+    return <LineGraph data={events} title={'Recent Events'} colors={colorArr} />
   }
 
   render () {
@@ -112,7 +181,19 @@ export default class EventsView extends React.PureComponent {
       <Container>
         <Container.Content>
           <Container.Body>
-            {this.renderEventsGraph()}
+            <Tabs>
+              <Tab text={'Graph View'}>
+                {this.renderEventsGraph()}
+                <Container.Color_legend>
+                  {this.renderLegend()}
+                </Container.Color_legend>
+              </Tab>
+
+              <Tab text={'Table View'}>
+                <h2>Recent Event Activity</h2>
+                {this.renderEventsTable()}
+              </Tab>
+            </Tabs>
           </Container.Body>
         </Container.Content>
       </Container>
