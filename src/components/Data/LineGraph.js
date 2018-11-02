@@ -93,12 +93,12 @@ export default class LineGraph extends React.PureComponent {
     const x = d3.scaleTime().range([0, width])
     const y = d3.scaleLinear().rangeRound([height, 0]).domain([0, 20])
 
-    const xAxis = d3.axisBottom().scale(x).ticks(4).tickFormat(d3.timeFormat('%b/%d'))
+    const xAxis = d3.axisBottom().scale(x).ticks(4).tickFormat(d3.timeFormat('%b/%d/%Y'))
     const yAxis = d3.axisLeft().scale(y)
 
     x.domain(d3.extent(data[0], d => d.date))
     y.domain(d3.extent(data[2], d => d.value))
-    console.log(data)
+
     const line = d3.line()
       .x(d => x(d.date))
       .y(d => y(+d.value))
