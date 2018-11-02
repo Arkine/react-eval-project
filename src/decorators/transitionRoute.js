@@ -1,9 +1,10 @@
 import React from 'react'
 import { Transition } from 'react-transition-group'
 import {TweenMax} from 'gsap'
+
 /**
- * Sets the document's title
- * @param {String} title
+ * Animates a route in from the top
+ * @param {Object} transition properties
  */
 const transitionRoute = (transitionProps = {}) => WrappedComponent => (
   class extends React.Component {

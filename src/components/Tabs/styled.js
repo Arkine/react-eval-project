@@ -1,13 +1,14 @@
 import styled from 'styled-components'
-import {NavLink} from 'react-router-dom'
 
 // Tabs Container
 export const TabsContainer = styled.div``
+
 TabsContainer.Nav = styled.ul`
   display: flex;
   flex-flow: row wrap;
   padding: 0;
 `
+
 TabsContainer.Content = styled.div`
   overflow: hidden;
 `
@@ -34,6 +35,7 @@ export const TabContainer = styled.li`
     }
   }
 `
+
 TabContainer.Link = styled.div`
 
 `

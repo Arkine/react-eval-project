@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
 `
+
 Container.Content = styled.div`
   position: sticky;
   top: 0;
@@ -14,6 +15,7 @@ Container.Content = styled.div`
 
   padding: 1rem 1rem 2rem;
 `
+
 Container.Username = styled(Link)`
   display: block;
   font-size: ${props => props.theme.fonts.h1.desktop};
@@ -21,6 +23,7 @@ Container.Username = styled(Link)`
   font-weight: 700;
   margin-bottom: 1rem;
 `
+
 Container.Bio = styled.div`
   margin-top: 1rem;
 `
