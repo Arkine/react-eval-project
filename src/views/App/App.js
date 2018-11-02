@@ -59,12 +59,17 @@ export default class App extends Component {
     })
   }
   componentDidMount () {
-    const {getUser, getRepos, getEvents, updateApp} = this.props
+    const {getUser, getRepos, getEvents, updateApp, location} = this.props
 
     getUser()
     getRepos()
     getEvents()
     updateApp()
+
+    // If we are on the home page, redirect to the repositiories by default
+    if (location.pathname === '/') {
+      history.push('/repositories')
+    }
   }
 
   render () {

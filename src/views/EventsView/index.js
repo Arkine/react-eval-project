@@ -101,7 +101,7 @@ export default class EventsView extends React.PureComponent {
     return outData
   }
 
-  renderEvents () {
+  renderEventsGraph () {
     const events = this.getEventsByDate()
 
     return <LineGraph data={events} title={'Recent Events'} />
@@ -111,7 +111,9 @@ export default class EventsView extends React.PureComponent {
     return (
       <Container>
         <Container.Content>
-          <Container.Body>{this.renderEvents()}</Container.Body>
+          <Container.Body>
+            {this.renderEventsGraph()}
+          </Container.Body>
         </Container.Content>
       </Container>
     )

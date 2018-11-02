@@ -1,10 +1,10 @@
 export default [
   {
-    'url': '/repositories',
-    'label': 'Repositories'
+    url: '/repositories',
+    label: 'Repositories'
   },
   {
-    'url': '/events',
-    'label': 'Events'
+    url: '/events',
+    label: 'Events'
   }
 ]
