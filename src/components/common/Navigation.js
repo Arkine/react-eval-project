@@ -12,7 +12,7 @@ Container.Link = styled(NavLink)`
   margin: 0.25rem;
   padding: 0.5rem;
 
-  color: ${props => props.theme.colors.dark_blue};
+  color: ${props => props => props.active === 'true' ? props.theme.colors.dark_blue : props.theme.colors.charcoal};
   border-bottom: 2px solid ${props => props.active === 'true' ? props.theme.colors.dark_blue : 'transparent'};
 
   &:first-of-type {
