@@ -36,17 +36,24 @@ export default class LineGraph extends React.PureComponent {
   }
 
   parseData (data) {
-    const items = []
-    console.log({allData: data})
-    for (const [key, item] of data) {
-      console.log({key, item})
-      items.push({
-        date: new Date(key),
-        value: item.events.length
-      })
+    // Lets us map out the lines. Dirty I know :(
+    const keys = Object.keys(data[0].data)
+
+    const lines = []
+    for (const key of keys) {
+      const lineData = []
+      for (const dateObj of data) {
+        lineData.push({
+          date: new Date(dateObj.date),
+          value: dateObj.data[key]
+        })
+      }
+
+      lines.push(lineData)
     }
 
-    return items
+    console.log(lines)
+    return lines
   }
   createContainerRef = el => {
     this.container = el
@@ -82,7 +89,6 @@ export default class LineGraph extends React.PureComponent {
       .x(d => x(d.date))
       .y(d => y(d.value))
 
-
     x.domain(d3.extent(data, d => d.date))
     y.domain(d3.extent(data, d => d.value))
 
@@ -102,16 +108,17 @@ export default class LineGraph extends React.PureComponent {
       .attr('dy', '0.71em')
       .attr('text-anchor', 'end')
       .text('# of events')
-    // for (const dataSet of data) {
+
+    for (const dataSet of data) {
       g.append('path')
-        .datum(data)
+        .datum(dataSet)
         .attr('fill', 'none')
         .attr('stroke', 'steelblue')
         .attr('stroke-linejoin', 'round')
         .attr('stroke-linecap', 'round')
         .attr('stroke-width', 1.5)
         .attr('d', line)
-    // }  
+    }
   }
   render () {
     return (

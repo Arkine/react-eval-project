@@ -53,29 +53,92 @@ export default class EventsView extends React.Component {
     return events.filter(event => event.type.split(/(?=[A-Z])/).join(' ') === this.state.filter)
   }
 
+  /**
+   * Return a set of unique type strings
+   */
+  getEventTypes () {
+    const {events} = this.props
+    const uniqueKeys = new Set()
+
+    for (const event of events) {
+      if (!uniqueKeys.has(event.type)) {
+        uniqueKeys.add(event.type)
+      }
+    }
+
+    return [...uniqueKeys.values()]
+  }
+
+  getUniqueDates() {
+    const {events} = this.props
+    const dateMap = new Set()
+
+    for (const event of events) {
+      const date = new Date(event.created_at)
+      const keyDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}` // Y M D
+
+      dateMap.add(keyDate)
+    }
+
+    return [...dateMap]
+  }
+
+  /**
+   * Get events by date
+   [
+     {
+      key,
+      data: [{
+        date,
+        value: events length
+     }]
+     }
+   ]
+   */
   getEventsByDate () {
     let events = this.getEvents()
-    const dataSets = new Map()
+    // Get the keys
+    const uniqueKeys = this.getEventTypes()
+    // Get the dates
+    const uniqueDates = this.getUniqueDates()
+    const outData = []
 
-    // Parse events to group them
-    events.map(event => {
-      const date = new Date(event.created_at)
-      // Y M D
-      const keyDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`
+    // Group the dates with the events of type key
+    for (const date of uniqueDates){
 
-      // If the type is already stored, add it to the type
-      if (dataSets.has(keyDate)) {
-        const storedItem = dataSets.get(keyDate)
-        storedItem.events.push(event)
-      } else {
-        dataSets.set(keyDate, {
-          events: [event]
-        })
+      let dateData = {
+        date,
+        data: {}
       }
-    })
 
-    return [...dataSets.entries()]
+      // Set intial values for keys
+      for (const key of uniqueKeys) {
+        dateData.data[key] = 0
+      }
+
+      // Get all of the events for this day
+      const associatedEvents = events.filter(event => {
+        const createdDate = new Date(event.created_at)
+        const keyDate = `${createdDate.getFullYear()}-${createdDate.getMonth()}-${createdDate.getDay()}` // Y M D
+
+        return keyDate === date
+      })
+
+      // Iterate and increment count for the date
+      for (const aEvent of associatedEvents) {
+        const type = aEvent.type
+
+        const count = dateData.data[type]
+
+        dateData.data[type] = count + 1
+      }
+
+      outData.push(dateData)
+    }
+
+    return outData
   }
+
   renderEvents () {
     const events = this.getEventsByDate()
 
