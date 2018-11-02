@@ -1,56 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Event from '../../components/Event'
-import SelectOption from '../../components/common/SelectOption'
+import setTitle from '../../decorators/setTitle'
+import transitionRoute from '../../decorators/transitionRoute'
+
+import LineGraph from '../../components/Data/LineGraph'
 
 import {Container} from './styled'
 
-import setTitle from '../../decorators/setTitle'
-import transitionRoute from '../../decorators/transitionRoute'
-import SlidingCards from '../../components/SlidingCards'
-import Pagination from '../../components/common/Pagination';
-import LineGraph from '../../components/Data/LineGraph';
-
 @setTitle('John-David Dalton | Events')
 @transitionRoute()
-export default class EventsView extends React.Component {
+export default class EventsView extends React.PureComponent {
   static defaultProps = {
-    events: [],
-    perPage: 20
+    events: []
   }
 
   static propTypes = {
-    events: PropTypes.array.isRequired,
-    perPage: PropTypes.number
-  }
-
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      filter: null,
-      page: 0
-    }
+    events: PropTypes.array.isRequired
   }
 
   getEvents () {
-    let {events, perPage} = this.props
-    // If the filter is not set and is not set to all  
-    if (this.state.filter && this.state.filter !== 'all') {
-      // Filter out events that we want
-      events = this.filterEvents(events)
-      // Calculate start and end indexes  
-    }
+    let {events} = this.props
 
-    const start = this.state.page * perPage
-    const end = start + perPage
-    // return events.slice(start, end)
     return events
-  }
-
-  filterEvents (events) {
-    return events.filter(event => event.type.split(/(?=[A-Z])/).join(' ') === this.state.filter)
   }
 
   /**
@@ -69,7 +41,7 @@ export default class EventsView extends React.Component {
     return [...uniqueKeys.values()]
   }
 
-  getUniqueDates() {
+  getUniqueDates () {
     const {events} = this.props
     const dateMap = new Set()
 
@@ -85,15 +57,6 @@ export default class EventsView extends React.Component {
 
   /**
    * Get events by date
-   [
-     {
-      key,
-      data: [{
-        date,
-        value: events length
-     }]
-     }
-   ]
    */
   getEventsByDate () {
     let events = this.getEvents()
@@ -104,8 +67,7 @@ export default class EventsView extends React.Component {
     const outData = []
 
     // Group the dates with the events of type key
-    for (const date of uniqueDates){
-
+    for (const date of uniqueDates) {
       let dateData = {
         date,
         data: {}
@@ -143,7 +105,6 @@ export default class EventsView extends React.Component {
     const events = this.getEventsByDate()
 
     return <LineGraph data={events} />
-    // return <SlidingCards items={events} contentComponent={Event} propKey='event' />
   }
 
   render () {

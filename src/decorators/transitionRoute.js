@@ -38,7 +38,7 @@ const transitionRoute = (transitionProps = {}) => WrappedComponent => (
         >
           <WrappedComponent {...this.props} />
         </Transition>
-    )
+      )
     }
   }
 )

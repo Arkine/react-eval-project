@@ -7,8 +7,6 @@ import {withRouter, Router, Route, Switch} from 'react-router-dom'
 import Loading from 'components/common/Loading'
 import Navigation from 'components/common/Navigation'
 import Sidebar from 'components/Sidebar'
-import Tabs from '../../components/Tabs'
-import Tab from '../../components/Tabs/Tab'
 
 import UserView from '../UserView'
 import EventsView from '../EventsView'
@@ -24,7 +22,6 @@ import {updateApp} from 'actions/appActions'
 import {Container, Stage} from './styled'
 
 import navItems from './navItems'
-
 
 const mapStateToProps = state => ({
   repos: state.repos,
@@ -56,6 +53,7 @@ export default class App extends Component {
     getRepos: PropTypes.func.isRequired,
     getUser: PropTypes.func.isRequired,
     updateApp: PropTypes.func.isRequired,
+    location: PropTypes.object.isRequired,
     app: PropTypes.shape({
       loading: PropTypes.bool
     })
@@ -68,7 +66,6 @@ export default class App extends Component {
     getEvents()
     updateApp()
   }
-
 
   render () {
     const {user, events, repos, app} = this.props
@@ -88,10 +85,10 @@ export default class App extends Component {
             <Stage.Content>
               <Router history={history}>
                 <Switch>
-                  <Route exact path="/repositories">
+                  <Route exact path='/repositories'>
                     { ({ match }) => <ReposView show={match !== null} repos={repos.data} /> }
                   </Route>
-                  <Route exact path="/events">
+                  <Route exact path='/events'>
                     { ({ match }) => <EventsView show={match !== null} events={events.data} /> }
                   </Route>
                 </Switch>
