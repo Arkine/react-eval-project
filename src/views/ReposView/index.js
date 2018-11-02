@@ -5,7 +5,6 @@ import setTitle from '../../decorators/setTitle'
 import transitionRoute from '../../decorators/transitionRoute'
 
 import SlidingCards from '../../components/SlidingCards'
-// import SearchBox from '../../components/common/SearchBox'
 import Repo from '../../components/Repo'
 
 import { Container } from './styled'
@@ -30,20 +29,7 @@ export default class ReposView extends React.Component {
   }
 
   getRepos () {
-    const {repos} = this.props
-    console.log(this.state.search)
-    // if (this.state.search && this.state.search.length) {
-    //   return repos.filter(repo => {
-    //     console.log({
-    //       eval: repo.name.toLowerCase().includes(this.state.search.toLowerCase()),
-    //       repo: repo.name.toLowerCase(),
-    //       state: this.state.search.toLowerCase()
-    //     })
-    //     return repo.name.toLowerCase().includes(this.state.search.toLowerCase())
-    //   })
-    // }
-
-    return repos
+    return this.props.repos
   }
   handleSearchInput = e => {
     this.setState({
@@ -55,9 +41,6 @@ export default class ReposView extends React.Component {
 
     return (
       <Container>
-        <Container.Header>
-          {/* <SearchBox onInputChange={this.handleSearchInput} /> */}
-        </Container.Header>
         <Container.Body>
           {repos.length === 0 &&
             <Container.No_results>{this.state.search || 'Repos'} not found...</Container.No_results>

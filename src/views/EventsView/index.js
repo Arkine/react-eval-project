@@ -104,7 +104,7 @@ export default class EventsView extends React.PureComponent {
   renderEvents () {
     const events = this.getEventsByDate()
 
-    return <LineGraph data={events} />
+    return <LineGraph data={events} title={'Recent Events'} />
   }
 
   render () {

@@ -5,6 +5,7 @@ import * as d3 from 'd3'
 
 const Container = styled.div`
   overflow: visible;
+  padding: 1rem;
 `
 
 Container.Chart = styled.svg`
@@ -27,7 +28,8 @@ const colors = [
 
 export default class LineGraph extends React.PureComponent {
   static propTypes = {
-    data: PropTypes.array.isRequired
+    data: PropTypes.array.isRequired,
+    title: PropTypes.string
   }
   constructor (props) {
     super(props)
@@ -79,7 +81,7 @@ export default class LineGraph extends React.PureComponent {
       left: 32
     }
     const svgWidth = this.container.clientWidth
-    const svgHeight = 450
+    const svgHeight = 475
     const width = svgWidth - margin.left - margin.right
     const height = svgHeight - margin.top - margin.bottom
 
@@ -91,10 +93,11 @@ export default class LineGraph extends React.PureComponent {
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
     const x = d3.scaleTime().range([0, width])
-    const y = d3.scaleLinear().rangeRound([height, 0])
+    const y = d3.scaleLinear().rangeRound([height - margin.top / 2, 0])
 
     const xAxis = d3.axisBottom().scale(x).ticks(4).tickFormat(d3.timeFormat('%b/%d/%Y'))
     const yAxis = d3.axisLeft().scale(y)
+
 
     x.domain(d3.extent(data[0], d => d.date))
     y.domain(d3.extent(data[2], d => d.value))
@@ -135,6 +138,7 @@ export default class LineGraph extends React.PureComponent {
   render () {
     return (
       <Container ref={this.createContainerRef}>
+        {this.props.title && <h2>{this.props.title}</h2>}
         <svg ref={this.createChartRef} />
       </Container>
     )
