@@ -11,11 +11,23 @@ Container.Chart = styled.svg`
   border: 1px solid red
 `
 
+const colors = [
+  'steelblue',
+  'green',
+  'red',
+  'purple',
+  'rebeccapurple',
+  'orange',
+  'yellow',
+  'salmon',
+  'chartreuse',
+  'cyan',
+  'gold'
+]
+
 export default class LineGraph extends React.PureComponent {
   static propTypes = {
     data: PropTypes.array.isRequired
-    // xScale: PropTypes.number.isRequired,
-    // yScale: PropTypes.number.isRequired
   }
   constructor (props) {
     super(props)
@@ -52,7 +64,6 @@ export default class LineGraph extends React.PureComponent {
       lines.push(lineData)
     }
 
-    console.log(lines)
     return lines
   }
   createContainerRef = el => {
@@ -62,13 +73,13 @@ export default class LineGraph extends React.PureComponent {
     const data = this.getData()
 
     const margin = {
-      top: 20,
+      top: 40,
       right: 20,
       bottom: 30,
-      left: 50
+      left: 20
     }
     const svgWidth = this.container.clientWidth
-    const svgHeight =  400
+    const svgHeight = 450
     const width = svgWidth - margin.left - margin.right
     const height = svgHeight - margin.top - margin.bottom
 
@@ -79,25 +90,24 @@ export default class LineGraph extends React.PureComponent {
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
-    const x = d3.scaleTime().rangeRound([0, width])
-    const y = d3.scaleLinear().rangeRound([height, 0])
+    const x = d3.scaleTime().range([0, width])
+    const y = d3.scaleLinear().rangeRound([height, 0]).domain([0, 20])
 
-    const xAxis = d3.axisBottom().scale(x).ticks(4)
-    const yAxis = d3.axisLeft().scale(y).ticks(5)
+    const xAxis = d3.axisBottom().scale(x).ticks(4).tickFormat(d3.timeFormat('%b/%d'))
+    const yAxis = d3.axisLeft().scale(y)
 
+    x.domain(d3.extent(data[0], d => d.date))
+    y.domain(d3.extent(data[2], d => d.value))
+    console.log(data)
     const line = d3.line()
       .x(d => x(d.date))
-      .y(d => y(d.value))
-
-    x.domain(d3.extent(data, d => d.date))
-    y.domain(d3.extent(data, d => d.value))
+      .y(d => y(+d.value))
 
     // Append Xaxis
     g.append('g')
       .attr('transform', `translate(0, ${height})`)
       .call(xAxis)
-      .select('.domain')
-    
+
     // Append Yaxis
     g.append('g')
       .call(yAxis)
@@ -109,14 +119,16 @@ export default class LineGraph extends React.PureComponent {
       .attr('text-anchor', 'end')
       .text('# of events')
 
-    for (const dataSet of data) {
+    for (const index in data) {
+      const dataSet = data[index]
+
       g.append('path')
         .datum(dataSet)
         .attr('fill', 'none')
-        .attr('stroke', 'steelblue')
+        .attr('stroke', colors[index])
         .attr('stroke-linejoin', 'round')
         .attr('stroke-linecap', 'round')
-        .attr('stroke-width', 1.5)
+        .attr('stroke-width', 2)
         .attr('d', line)
     }
   }
