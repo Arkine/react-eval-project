@@ -101,7 +101,7 @@ export default class Loading extends React.Component {
 
     const textArray = [...text]
 
-    return textArray.map(letter => <Dot ref={this.addDotRef}><Dot.Text ref={this.addLetterRef}>{letter}</Dot.Text></Dot>)
+    return textArray.map((letter, i) => <Dot ref={this.addDotRef} key={`dot-${i}`}><Dot.Text ref={this.addLetterRef}>{letter}</Dot.Text></Dot>)
   }
 
   render () {

@@ -59,10 +59,19 @@ export default class Pagination extends React.PureComponent {
 
     for (let i = 1; i <= pageCount; i++) {
       const active = currentPage === i
-      out.push(<Container.Page_number onClick={this.handleNumberClick} data-page={i} active={active}>{i}</Container.Page_number>)
+      out.push(
+        <Container.Page_number
+          key={`page-number-${i}`}
+          onClick={this.handleNumberClick}
+          data-page={i}
+          active={active}
+        >
+          {i}
+        </Container.Page_number>
+      )
     }
 
-    return out.slice(0, showMax).concat(<p>...</p>)
+    return out.slice(0, showMax).concat(<p key={`page-number-${99999}`}>...</p>)
   }
   handleNumberClick = e => {
     this.props.onPageClick(e)

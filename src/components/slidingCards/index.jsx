@@ -27,7 +27,7 @@ export default class SlidingCards extends React.PureComponent {
     stagger: PropTypes.number,
     options: PropTypes.object,
     items: PropTypes.array.isRequired,
-    contentComponent: PropTypes.element.isRequired,
+    contentComponent: PropTypes.func.isRequired,
     propKey: PropTypes.string.isRequired
   }
 
