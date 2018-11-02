@@ -128,13 +128,3 @@ export default class EventsView extends React.Component {
     )
   }
 }
-
-// EventsView.defaultProps = {
-//   events: [],
-//   perPage: 20
-// }
-
-// EventsView.propTypes = {
-//   events: PropTypes.array.isRequired,
-//   perPage: PropTypes.number
-// }

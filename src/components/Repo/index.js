@@ -46,11 +46,3 @@ export default class Repo extends React.PureComponent {
     )
   }
 }
-
-// Repo.defaultProps = {
-//   repo: {}
-// }
-
-// Repo.propTypes = {
-//   repo: PropTypes.object.isRequired
-// }

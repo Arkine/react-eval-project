@@ -29,11 +29,3 @@ export default class Event extends React.PureComponent {
     )
   }
 }
-
-// Event.defaultProps = {
-//   event: {}
-// }
-
-// Event.propTypes = {
-//   event: PropTypes.object.isRequired
-// }

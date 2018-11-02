@@ -24,13 +24,3 @@ export default class ImageBlock extends React.PureComponent {
     )
   }
 }
-
-// ImageBlock.defaultProps = {
-//   image: ''
-// }
-
-// ImageBlock.propTypes = {
-//   image: PropTypes.string.isRequired,
-//   height: PropTypes.number,
-//   width: PropTypes.number
-// }

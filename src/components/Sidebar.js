@@ -25,7 +25,3 @@ export default class Sidebar extends React.PureComponent {
     )
   }
 }
-
-// Sidebar.propTypes = {
-//   children: PropTypes.element.isRequired
-// }

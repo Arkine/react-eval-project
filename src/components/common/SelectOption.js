@@ -9,6 +9,21 @@ Container.Label = styled.label`
 `
 
 export default class SelectOption extends React.PureComponent {
+  static defaultProps = {
+    allowNone: true,
+    onSelect: () => {}
+  }
+
+  static propTypes = {
+    allowNone: PropTypes.bool,
+    onSelect: PropTypes.func.isRequired,
+    label: PropTypes.string,
+    options: PropTypes.shape({
+      type: PropTypes.string,
+      label: PropTypes.string
+    }).isRequired
+  }
+
   renderOptions () {
     const {options, allowNone} = this.props
     const newOptions = [...options]
@@ -41,19 +56,4 @@ export default class SelectOption extends React.PureComponent {
       </Container>
     )
   }
-}
-
-SelectOption.defaultProps = {
-  allowNone: true,
-  onSelect: () => {}
-}
-
-SelectOption.propTypes = {
-  allowNone: PropTypes.bool,
-  onSelect: PropTypes.func.isRequired,
-  label: PropTypes.string,
-  options: PropTypes.shape({
-    type: PropTypes.string,
-    label: PropTypes.string
-  }).isRequired
 }

@@ -4,6 +4,15 @@ import PropTypes from 'prop-types'
 import {TabsContainer} from './styled'
 
 export default class Tabs extends React.Component {
+  static defaultProps = {
+    defaultActiveTabIndex: 0
+  }
+
+  static propTypes = {
+    defaultActiveTabIndex: PropTypes.number,
+    children: PropTypes.element.isRequired
+  }
+
   constructor (props) {
     super(props)
 
@@ -50,13 +59,4 @@ export default class Tabs extends React.Component {
       </TabsContainer>
     )
   }
-}
-
-Tabs.defaultProps = {
-  defaultActiveTabIndex: 0
-}
-
-Tabs.propTypes = {
-  defaultActiveTabIndex: PropTypes.number,
-  children: PropTypes.element.isRequired
 }

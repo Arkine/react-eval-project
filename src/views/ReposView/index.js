@@ -18,11 +18,6 @@ export default class ReposView extends React.Component {
   }
 
   static defaultProps = {
-    events: [],
-    perPage: 20
-  }
-
-  static defaultProps = {
     repos: []
   }
 
@@ -75,11 +70,3 @@ export default class ReposView extends React.Component {
     )
   }
 }
-
-// ReposView.defaultProps = {
-//   repos: []
-// }
-
-// ReposView.propTypes = {
-//   repos: PropTypes.array.isRequired
-// }

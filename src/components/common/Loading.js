@@ -114,17 +114,3 @@ export default class Loading extends React.Component {
     )
   }
 }
-
-// Loading.defaultProps = {
-//   isLoading: false,
-//   duration: 0.6,
-//   stagger: 0.08,
-//   textDelay: '-=1'
-// }
-
-// Loading.propTypes = {
-//   isLoading: PropTypes.bool.isRequired,
-//   duration: PropTypes.number,
-//   stagger: PropTypes.number,
-//   textDelay: PropTypes.string
-// }

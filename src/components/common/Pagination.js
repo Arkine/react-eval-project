@@ -87,15 +87,3 @@ export default class Pagination extends React.PureComponent {
     )
   }
 }
-
-// Pagination.defaultProps = {
-//   showMax: 3
-// }
-
-// Pagination.propTypes = {
-//   pageCount: PropTypes.number.isRequired,
-//   currentPage: PropTypes.number.isRequired,
-//   onNavChange: PropTypes.func.isRequired,
-//   onPageClick: PropTypes.func.isRequired,
-//   showMax: PropTypes.number
-// }

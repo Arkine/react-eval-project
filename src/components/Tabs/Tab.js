@@ -4,6 +4,20 @@ import PropTypes from 'prop-types'
 import {TabContainer} from './styled'
 
 export default class Tab extends React.PureComponent {
+  static defaultProps = {
+    onClick: () => {},
+    tabIndex: 0,
+    text: ''
+  }
+
+  static propTypes = {
+    onClick: PropTypes.func,
+    tabIndex: PropTypes.number,
+    text: PropTypes.string,
+    to: PropTypes.string.isRequired,
+    isActive: PropTypes.bool
+  }
+
   render () {
     return (
       <TabContainer isActive={this.props.isActive}>
@@ -19,18 +33,4 @@ export default class Tab extends React.PureComponent {
       </TabContainer>
     )
   }
-}
-
-Tab.defaultProps = {
-  onClick: () => {},
-  tabIndex: 0,
-  text: ''
-}
-
-Tab.propTypes = {
-  onClick: PropTypes.func,
-  tabIndex: PropTypes.number,
-  text: PropTypes.string,
-  to: PropTypes.string.isRequired,
-  isActive: PropTypes.bool
 }

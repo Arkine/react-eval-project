@@ -18,6 +18,14 @@ ListItem.Text = styled.span`
 `
 
 export default class UnorderedList extends React.PureComponent {
+  static defaultProps = {
+    items: {}
+  }
+
+  static propTypes = {
+    items: PropTypes.object.isRequired
+  }
+
   renderChildItems () {
     const {items} = this.props
 
@@ -43,12 +51,4 @@ export default class UnorderedList extends React.PureComponent {
       </ListContainer>
     )
   }
-}
-
-UnorderedList.defaultProps = {
-  items: {}
-}
-
-UnorderedList.propTypes = {
-  items: PropTypes.object.isRequired
 }

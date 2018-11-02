@@ -20,7 +20,10 @@ export default class IconText extends React.PureComponent {
 
   static propTypes = {
     icon: PropTypes.object.isRequired,
-    text: PropTypes.string.isRequired
+    text: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ])
   }
 
   render () {
@@ -29,13 +32,3 @@ export default class IconText extends React.PureComponent {
     )
   }
 }
-
-// IconText.defaultProps = {
-//   icon: {},
-//   text: ''
-// }
-
-// IconText.propTypes = {
-//   icon: PropTypes.object.isRequired,
-//   text: PropTypes.string.isRequired
-// }

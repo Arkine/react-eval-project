@@ -103,22 +103,3 @@ export default class App extends Component {
     )
   }
 }
-
-// App.defaultProps = {
-//   user: {},
-//   events: {},
-//   repos: {}
-// }
-
-// App.propTypes = {
-//   user: PropTypes.object.isRequired,
-//   events: PropTypes.object.isRequired,
-//   repos: PropTypes.object.isRequired,
-//   getEvents: PropTypes.func.isRequired,
-//   getRepos: PropTypes.func.isRequired,
-//   getUser: PropTypes.func.isRequired,
-//   updateApp: PropTypes.func.isRequired,
-//   app: PropTypes.shape({
-//     loading: PropTypes.bool
-//   })
-// }

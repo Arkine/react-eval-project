@@ -63,20 +63,3 @@ export default class SlidingCards extends React.PureComponent {
     )
   }
 }
-
-// SlidingCards.defaultProps = {
-//   duration: 0.5,
-//   stagger: 0.1,
-//   options: {autoAlpha: 1, y: -20},
-//   items: [],
-//   propKey: 'data'
-// }
-
-// SlidingCards.propTypes = {
-//   duration: PropTypes.number,
-//   stagger: PropTypes.number,
-//   options: PropTypes.object,
-//   items: PropTypes.array.isRequired,
-//   contentComponent: PropTypes.element.isRequired,
-//   propKey: PropTypes.string.isRequired
-// }

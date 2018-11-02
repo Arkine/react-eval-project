@@ -36,14 +36,3 @@ export default class SearchBox extends React.PureComponent {
     )
   }
 }
-
-// SearchBox.defaultProps = {
-//   placeholderText: 'Search...',
-//   onInputChange: () => {}
-// }
-
-// SearchBox.propTypes = {
-//   label: PropTypes.string,
-//   placeholderText: PropTypes.string,
-//   onInputChange: PropTypes.func.isRequired
-// }
