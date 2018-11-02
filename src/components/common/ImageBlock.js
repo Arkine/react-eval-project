@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 const Image = styled.img`
-  border-radius: 30px;
+  border-radius: 4px;
   margin: 0 auto;
 `
 

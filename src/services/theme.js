@@ -1,18 +1,21 @@
 export default {
   colors: {
     green: '#0F0',
-    yellow_sun: '#fff568',
-    blue_dark: '#0d98cf',
-    blue_light: '#08a0d9',
+    blue_frost: '#01c0e7',
+    blue_dark: '#1c81d3',
+    blue_light: '#4b9ebd',
     gray: '#6c6e70',
-    gray_light: '#CCC',
+    gray_light: '#E3E5E9',
     charcoal: '#2e3033'
   },
+  body: {
+    width: '78rem'
+  },
   fonts: {
-    family: '"Raleway", sans-serif',
+    family: 'Roboto, sans-serif',
     rootSize: '16px',
     h1: {
-      desktop: '1.625rem',
+      desktop: '1.825rem',
       mobile: '1.125rem'
     },
     h2: {

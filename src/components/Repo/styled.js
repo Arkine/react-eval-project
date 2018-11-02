@@ -7,14 +7,16 @@ export const Container = styled.div`
   height: 100%;
 `
 
-Container.Link = styled.a``
+Container.Link = styled.a`
+  color: ${props => props.theme.colors.blue_dark};
+`
 /**
  * Header
  */
 Container.Header = styled.div``
 
 Container.Title = styled.h3`
-  font-size: ${props => props.theme.fonts.h3.desktop};
+  font-size: ${props => props.theme.fonts.h2.desktop};
   margin: 0;
 `
 

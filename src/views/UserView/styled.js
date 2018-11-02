@@ -13,7 +13,7 @@ Container.Content = styled.div`
   background-color: #fff;
   border-radius: 10px;
 
-  padding: 1rem 1rem 2rem;
+  padding: 1rem 1.5rem 2rem;
 `
 
 Container.Username = styled(Link)`

@@ -21,7 +21,8 @@ const Container = styled.div`
   height: 100%;
   width: 100%;
 
-  color: ${props => props.theme.colors.yellow_sun};
+  color: #fff;
+  font-weight: 700;
   background-color: ${props => props.theme.colors.gray};
 
   visibility: ${props => props.isLoading ? 'visible' : 'hidden'};

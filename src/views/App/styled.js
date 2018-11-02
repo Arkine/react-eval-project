@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
 
-  max-width: 78rem;
+  max-width: ${props => props.theme.body.width};
   margin: 0 auto;
 
   height: 100%;

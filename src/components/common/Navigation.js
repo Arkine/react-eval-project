@@ -7,6 +7,8 @@ import {NavLink} from 'react-router-dom'
 const Container = styled.nav`
   display: flex;
   flex-flow: row nowrap;
+
+  padding: 0 1rem;
 `
 Container.Link = styled(NavLink)`
   margin: 0.25rem;

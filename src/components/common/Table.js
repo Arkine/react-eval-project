@@ -23,19 +23,19 @@ Table.Data = styled.td`
 `
 
 Table.Head = styled.thead`
-  border: 1px solid ${props => props.theme.colors.gray};
+  border: 1px solid ${props => props.theme.colors.gray_light};
 
   td {
   }
 `
 
 Table.Body = styled.tbody`
-  border: 1px solid ${props => props.theme.colors.gray}
+  border: 1px solid ${props => props.theme.colors.gray_light}
 `
 
 Table.Row = styled.tr`
   &:nth-of-type(even) {
     border-bottom: 0;
-    background-color: ${props => props.theme.colors.gray};
+    background-color: ${props => props.theme.colors.gray_light};
   }
 `
