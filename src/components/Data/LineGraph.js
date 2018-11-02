@@ -75,7 +75,7 @@ export default class LineGraph extends React.PureComponent {
     const margin = {
       top: 40,
       right: 20,
-      bottom: 30,
+      bottom: 40,
       left: 20
     }
     const svgWidth = this.container.clientWidth
@@ -91,7 +91,7 @@ export default class LineGraph extends React.PureComponent {
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
     const x = d3.scaleTime().range([0, width])
-    const y = d3.scaleLinear().rangeRound([height, 0]).domain([0, 20])
+    const y = d3.scaleLinear().rangeRound([height, 0])
 
     const xAxis = d3.axisBottom().scale(x).ticks(4).tickFormat(d3.timeFormat('%b/%d/%Y'))
     const yAxis = d3.axisLeft().scale(y)
