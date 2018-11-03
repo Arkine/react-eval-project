@@ -27,7 +27,11 @@ Container.Legend = styled.div`
 Container.Legend_item = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
+
+  &:nth-of-type(even) {
+    background-color: ${props => props.theme.colors.gray_light};
+  }
 `
 
 const ColorBlock = styled.div`
