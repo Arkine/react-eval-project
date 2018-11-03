@@ -85,16 +85,20 @@ export default class LineGraph extends React.PureComponent {
     const width = svgWidth - margin.left - margin.right
     const height = svgHeight - margin.top - margin.bottom
 
+    // Set the chart's width and height
     const svg = d3.select(this.chart)
       .attr('width', svgWidth)
       .attr('height', svgHeight)
 
+    // Append the graph
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
-    const x = d3.scaleTime().range([0, width])
-    const y = d3.scaleLinear().rangeRound([height - margin.top / 2, 0])
+    // Set the x and y scale types and ranges
+    const x = d3.scaleTime().rangeRound([0, width])
+    const y = d3.scaleLinear().rangeRound([height, 0])
 
+    // Apply the xAxis and yAxis properties
     const xAxis = d3
       .axisBottom()
       .scale(x)
@@ -104,8 +108,17 @@ export default class LineGraph extends React.PureComponent {
       .axisLeft()
       .scale(y)
 
-    x.domain(d3.extent(data[0], d => d.date))
-    y.domain(d3.extent(data[2], d => d.value))
+    // find the min and max of all of the lines
+    const findBounds = (bound, key) => d3[bound](data.map(array => d3[bound](d3.extent(array, d => d[key]))))
+
+    const xMax = findBounds('max', 'date')
+    const xMin = findBounds('min', 'date')
+    const yMax = findBounds('max', 'value')
+    const yMin = findBounds('min', 'value')
+    // x.domain(d3.extent(data[0], d => d.date))
+    // y.domain(d3.extent(data[2], d => d.value))
+    x.domain([xMin, xMax])
+    y.domain([yMin, yMax])
 
     const line = d3.line()
       .x(d => x(d.date))
@@ -136,7 +149,7 @@ export default class LineGraph extends React.PureComponent {
         .attr('stroke', this.props.colors[index])
         .attr('stroke-linejoin', 'round')
         .attr('stroke-linecap', 'round')
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 2.5)
         .attr('d', line)
     }
   }

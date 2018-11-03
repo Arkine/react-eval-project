@@ -7,6 +7,7 @@ const fadeOut = keyframes`
   from {opacity: 1}
   to {opacity: 0}
 `
+
 const Container = styled.div`
   position: absolute;
   top: 0;
@@ -30,6 +31,7 @@ const Container = styled.div`
 
   transition: visibility 0.5s linear;
 `
+
 Container.Text = styled.div`
   display: flex;
   justify-content: center;
