@@ -181,7 +181,7 @@ export default class EventsView extends React.PureComponent {
   renderEventsGraph () {
     const events = this.getEventsByDate()
 
-    return <LineGraph data={events} title={'Recent Events'} colors={colorArr} />
+    return <LineGraph data={events} colors={colorArr} />
   }
 
   render () {
@@ -189,6 +189,7 @@ export default class EventsView extends React.PureComponent {
       <Container>
         <Container.Content>
           <Container.Body>
+            <h2>Recent Event Activity</h2>
             <Tabs alignTabs='right'>
               <Tab text={'Graph View'}>
                 {this.renderEventsGraph()}
@@ -198,7 +199,6 @@ export default class EventsView extends React.PureComponent {
               </Tab>
 
               <Tab text={'Table View'}>
-                <h2>Recent Event Activity</h2>
                 {this.renderEventsTable()}
               </Tab>
             </Tabs>
