@@ -15,7 +15,7 @@ const Container = styled.div`
 
 export default class Sidebar extends React.PureComponent {
   static propTypes = {
-    children: PropTypes.element.isRequired
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired
   }
 
   render () {

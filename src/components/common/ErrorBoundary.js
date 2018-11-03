@@ -17,7 +17,7 @@ Error.Info = styled.div``
 
 export default class ErrorBoundary extends React.Component {
   static propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
     text: PropTypes.string
   }
 
