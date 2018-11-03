@@ -2,11 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {faArchive, faUsers} from '@fortawesome/free-solid-svg-icons'
 
+import transitionRoute from '../../decorators/transitionRoute'
+
 import ImageBlock from '../../components/common/ImageBlock'
 import IconText from '../../components/IconText'
 
+import {fadeFromLeft} from '../../services/animations/transition'
+
 import {Container} from './styled'
 
+@transitionRoute(fadeFromLeft)
 export default class UserView extends React.PureComponent {
   static propTypes = {
     user: PropTypes.object.isRequired

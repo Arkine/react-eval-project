@@ -1,6 +1,11 @@
 import {TweenMax} from 'gsap'
-
-export const fadeUp = (props) => {
+/**
+ * fadeFromTop
+ * @param {Object} props: state object
+ * 
+ * Fades the view down from the top
+ */
+export const fadeFromTop = (props) => {
   return {
     unmountOnExit: true,
     timeout: 1000,
@@ -9,6 +14,27 @@ export const fadeUp = (props) => {
       TweenMax.to(node, 0.5, {
         autoAlpha: props.mounted ? 1 : 0,
         y: props.mounted ? 0 : 50,
+        onComplete: done
+      })
+    }
+  }
+}
+
+/**
+ * fadeFromLeft
+ * @param {props} props for setting state
+ * 
+ * Fades in the view from the left
+ */
+export const fadeFromLeft = (props) => {
+  return {
+    unmountOnExit: true,
+    timeOut: 1000,
+    onEnter: node => TweenMax.set(node, {autoAlpha: 0, x: -50}),
+    addEndListener: (node, done) => {
+      TweenMax.to(node, 0.5, {
+        autoAlpha: props.mounted ? 1 : 0,
+        x: props.mounted ? 0 : 50,
         onComplete: done
       })
     }

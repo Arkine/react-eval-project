@@ -3,9 +3,10 @@ import { Transition } from 'react-transition-group'
 
 /**
  * Animates a route in from the top
- * @param {Object} transition properties
+ * @param {Object} transitionProps: properties for gsap
+ * @param {Object} additionalProps: custom transition properties
  */
-const transitionRoute = (transitionProps = () => {}) => WrappedComponent => (
+const transitionRoute = (transitionProps = () => {}, additionalProps = {}) => WrappedComponent => (
   class extends React.Component {
     constructor (props) {
       super(props)
@@ -27,6 +28,7 @@ const transitionRoute = (transitionProps = () => {}) => WrappedComponent => (
           timeout={1000}
           in={this.state.mounted}
           {...transitionProps(this.state)}
+          {...additionalProps}
         >
           <WrappedComponent {...this.props} />
         </Transition>
