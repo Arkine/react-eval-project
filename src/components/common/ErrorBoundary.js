@@ -20,7 +20,7 @@ export default class ErrorBoundary extends React.Component {
     children: PropTypes.element.isRequired,
     text: PropTypes.string
   }
-  
+
   constructor (props) {
     super(props)
 
