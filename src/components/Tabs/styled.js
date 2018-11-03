@@ -6,6 +6,7 @@ export const TabsContainer = styled.div``
 TabsContainer.Nav = styled.ul`
   display: flex;
   flex-flow: row wrap;
+  justify-content: ${props => props.alignTabs === 'right' ? 'flex-end' : 'flex-start'};
   padding: 0;
 `
 
@@ -15,9 +16,10 @@ TabsContainer.Content = styled.div`
 
 // Singe tab
 export const TabContainer = styled.li`
-  padding: 0.5rem;
+  padding: 0.25rem;
+  margin: 0 0.25rem;
 
-  border-bottom: 2px solid ${props => props.isActive ? props.theme.colors.blue_dark : '#fff'};
+  border: 1px solid ${props => props.isActive ? props.theme.colors.blue_dark : '#fff'};
 
   border-radius: 4px;
 

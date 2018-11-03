@@ -5,11 +5,13 @@ import {TabsContainer} from './styled'
 
 export default class Tabs extends React.Component {
   static defaultProps = {
-    defaultActiveTabIndex: 0
+    defaultActiveTabIndex: 0,
+    alignTabs: 'left'
   }
 
   static propTypes = {
     defaultActiveTabIndex: PropTypes.number,
+    alignTabs: PropTypes.string,
     children: PropTypes.element.isRequired
   }
 
@@ -49,7 +51,7 @@ export default class Tabs extends React.Component {
   render () {
     return (
       <TabsContainer>
-        <TabsContainer.Nav>
+        <TabsContainer.Nav alignTabs={this.props.alignTabs}>
           {this.renderChildrenWithProps()}
         </TabsContainer.Nav>
 

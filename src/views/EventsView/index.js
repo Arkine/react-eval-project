@@ -185,7 +185,7 @@ export default class EventsView extends React.PureComponent {
       <Container>
         <Container.Content>
           <Container.Body>
-            <Tabs>
+            <Tabs alignTabs='right'>
               <Tab text={'Graph View'}>
                 {this.renderEventsGraph()}
                 <Container.Color_legend>
