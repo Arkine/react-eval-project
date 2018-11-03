@@ -15,7 +15,7 @@ export default class Tabs extends React.Component {
   static propTypes = {
     defaultActiveTabIndex: PropTypes.number,
     alignTabs: PropTypes.string,
-    children: PropTypes.element.isRequired
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired
   }
 
   constructor (props) {

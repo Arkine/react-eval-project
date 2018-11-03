@@ -126,7 +126,7 @@ export default class EventsView extends React.PureComponent {
 
         <Table.Body>
           {keys.map((eventType, i) => (
-            <Table.Row>
+            <Table.Row key={`table-row-${i}`}>
               <Table.Data>
                 <ColorBlock color={colorArr[i]} />
               </Table.Data>
@@ -160,7 +160,7 @@ export default class EventsView extends React.PureComponent {
             const count = events.reduce((acc, next) => acc + (next.type === eventType), 0)
 
             return (
-              <Table.Row>
+              <Table.Row key={`table-row-${i}`}>
                 <Table.Data>
                   <ColorBlock color={colorArr[i]} />
                 </Table.Data>
