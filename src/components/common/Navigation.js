@@ -22,6 +22,9 @@ Container.Link = styled(NavLink)`
   }
 `
 
+/**
+ * Primary app navigation
+ */
 export default class Navigation extends React.PureComponent {
   static propTypes = {
     currentSlug: PropTypes.string.isRequired,

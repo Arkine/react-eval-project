@@ -48,6 +48,10 @@ export default class EventsView extends React.PureComponent {
     return [...uniqueKeys.values()]
   }
 
+  /**
+   * Get a mapping of dates with a list of event occurences
+   * for each unique date
+   */
   getUniqueDates () {
     const {events} = this.props
     const dateMap = new Set()
@@ -63,7 +67,7 @@ export default class EventsView extends React.PureComponent {
   }
 
   /**
-   * Get events by date
+   * Get a list of all events by date
    */
   getEventsByDate () {
     let events = this.getEvents()

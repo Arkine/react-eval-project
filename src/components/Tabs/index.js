@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 
 import {TabsContainer} from './styled'
 
+/**
+ * Renders content using a tab interface
+ */
 export default class Tabs extends React.Component {
   static defaultProps = {
     defaultActiveTabIndex: 0,

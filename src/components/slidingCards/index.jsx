@@ -42,10 +42,16 @@ export default class SlidingCards extends React.PureComponent {
     this.tl.staggerTo(this.cards, this.props.duration, this.props.options, this.props.stagger)
   }
 
+  /**
+   * Create references to cards for DOM manioulation
+   */
   createRef = el => {
     this.cards.push(el)
   }
 
+  /**
+   * Wrap each child into a card for transitioning
+   */
   renderChildren () {
     const {items, contentComponent: Component, propKey} = this.props
 

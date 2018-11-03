@@ -52,6 +52,9 @@ Dot.Text = styled.span`
   transform: scale(0);
   font-size: 1.25rem;
 `
+/**
+ * Loading animation screen
+ */
 export default class Loading extends React.Component {
   static defaultProps = {
     isLoading: false,

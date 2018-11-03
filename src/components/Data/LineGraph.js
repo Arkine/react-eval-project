@@ -17,6 +17,7 @@ export default class LineGraph extends React.PureComponent {
     title: PropTypes.string,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired
   }
+
   constructor (props) {
     super(props)
 
@@ -34,7 +35,10 @@ export default class LineGraph extends React.PureComponent {
   getData () {
     return this.parseData(this.props.data)
   }
-
+  /**
+   * Parses out the data into a useable array for d3
+   * @param {Array} data: data being plotted
+   */
   parseData (data) {
     // Lets us map out the lines. Dirty I know :(
     const keys = Object.keys(data[0].data)
@@ -54,9 +58,19 @@ export default class LineGraph extends React.PureComponent {
 
     return lines
   }
+
+  /**
+   * Set the container ref
+   */
   createContainerRef = el => {
     this.container = el
   }
+
+  /**
+   * renderChart
+   * 
+   * Renders the chart itself
+   */
   renderChart () {
     const data = this.getData()
 
@@ -126,6 +140,7 @@ export default class LineGraph extends React.PureComponent {
         .attr('d', line)
     }
   }
+
   render () {
     return (
       <Container ref={this.createContainerRef}>

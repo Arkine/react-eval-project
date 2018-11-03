@@ -6,7 +6,9 @@ const Image = styled.img`
   border-radius: 4px;
   margin: 0 auto;
 `
-
+/**
+ * Displays an image url in block
+ */
 export default class ImageBlock extends React.PureComponent {
   static defaultProps = {
     image: ''
