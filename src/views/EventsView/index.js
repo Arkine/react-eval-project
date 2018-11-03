@@ -112,7 +112,13 @@ export default class EventsView extends React.PureComponent {
     return outData
   }
 
-  renderLegend () {
+  getLegendData = () => {
+    const keys = this.getEventTypes()
+
+    return keys.map((key, i) => ({key: key.split(/(?=[A-Z])/).join(' '), color: colorArr[i]}))
+  }
+
+  renderLegend = () => {
     const keys = this.getEventTypes()
 
     return (
@@ -180,8 +186,9 @@ export default class EventsView extends React.PureComponent {
 
   renderEventsGraph () {
     const events = this.getEventsByDate()
+    const legendData = this.getLegendData()
 
-    return <LineGraph data={events} colors={colorArr} />
+    return <LineGraph data={events} colors={colorArr} legend={legendData} />
   }
 
   render () {
@@ -193,9 +200,6 @@ export default class EventsView extends React.PureComponent {
             <Tabs alignTabs='right'>
               <Tab text={'Graph View'}>
                 {this.renderEventsGraph()}
-                <Container.Color_legend>
-                  {this.renderLegend()}
-                </Container.Color_legend>
               </Tab>
 
               <Tab text={'Table View'}>

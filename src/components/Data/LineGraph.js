@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import * as d3 from 'd3'
 
 const Container = styled.div`
+  position: relative;
   overflow: visible;
 `
 
@@ -11,11 +12,43 @@ Container.Chart = styled.svg`
   border: 1px solid red
 `
 
+Container.Legend = styled.div`
+  position: absolute;
+  top: 0.75rem;
+  right: 0;
+
+  font-size: 0.6rem;
+
+  display: flex;
+  flex-flow: column wrap;
+  width: auto;
+`
+
+Container.Legend_item = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+`
+
+const ColorBlock = styled.div`
+  height: 5px;
+  width: 5px;
+
+  margin-left: 0.75rem;
+
+  background-color: ${props => props.color};
+`
+
 export default class LineGraph extends React.PureComponent {
+  static defaultProps = {
+    legend: []
+  }
+
   static propTypes = {
     data: PropTypes.array.isRequired,
     title: PropTypes.string,
-    colors: PropTypes.arrayOf(PropTypes.string).isRequired
+    colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    legend: PropTypes.arrayOf(PropTypes.shape({key: PropTypes.string, color: PropTypes.string}))
   }
 
   constructor (props) {
@@ -64,6 +97,24 @@ export default class LineGraph extends React.PureComponent {
    */
   createContainerRef = el => {
     this.container = el
+  }
+
+  /**
+   * Render the chart legend
+   */
+  renderLegend () {
+    const {legend} = this.props
+
+    return (
+      <Container.Legend>
+        {legend.map(item => (
+          <Container.Legend_item>
+            <span>{item.key}</span>
+            <ColorBlock color={item.color} />
+          </Container.Legend_item>
+        ))}
+      </Container.Legend>
+    )
   }
 
   /**
@@ -158,6 +209,7 @@ export default class LineGraph extends React.PureComponent {
     return (
       <Container ref={this.createContainerRef}>
         {this.props.title && <h2>{this.props.title}</h2>}
+        {this.props.legend.length > 0 && this.renderLegend()}
         <svg ref={this.createChartRef} />
       </Container>
     )
