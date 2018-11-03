@@ -11,9 +11,7 @@ const Container = styled.div`
   width: 100%;
 `
 
-const Error = styled.div`
-
-`
+const Error = styled.div``
 Error.Message = styled.h3``
 Error.Info = styled.div``
 
