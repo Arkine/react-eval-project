@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { TimelineLite } from 'gsap'
-import { CardsContainer, Card, DummyCard } from './styled'
 import {connect} from 'react-redux'
+import {TimelineLite} from 'gsap'
+import {CardsContainer, Card, DummyCard} from './styled'
 
 /**
  * SlidingCards animated component

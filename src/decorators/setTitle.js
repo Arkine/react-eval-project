@@ -1,4 +1,5 @@
 import React from 'react'
+
 /**
  * Sets the document's title
  * @param {String} title

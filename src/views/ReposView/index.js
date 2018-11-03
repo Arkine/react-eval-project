@@ -10,7 +10,7 @@ import Repo from '../../components/Repo'
 
 import {fadeFromTop} from '../../services/animations/transition'
 
-import { Container } from './styled'
+import {Container} from './styled'
 
 @setTitle('John-David Dalton | Repositories')
 @transitionRoute(fadeFromTop)

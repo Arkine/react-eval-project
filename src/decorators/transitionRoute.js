@@ -1,5 +1,5 @@
 import React from 'react'
-import { Transition } from 'react-transition-group'
+import {Transition} from 'react-transition-group'
 
 /**
  * Animates a route in from the top

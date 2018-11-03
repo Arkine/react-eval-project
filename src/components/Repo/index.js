@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {faUsers, faStar, faExclamation, faCodeBranch, faCode} from '@fortawesome/free-solid-svg-icons'
 
-import {Container} from './styled'
 import IconText from '../../components/IconText'
+
+import {Container} from './styled'
 
 export default class Repo extends React.PureComponent {
   static defaultProps = {

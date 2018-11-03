@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, {keyframes} from 'styled-components'
 import PropTypes from 'prop-types'
-import { TimelineMax } from 'gsap'
+import {TimelineMax} from 'gsap'
 
 const fadeOut = keyframes`
   from {opacity: 1}

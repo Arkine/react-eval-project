@@ -8,7 +8,7 @@ import catchErrors from '../../decorators/catchErrors'
 import LineGraph from '../../components/Data/LineGraph'
 import Tabs from '../../components/Tabs'
 import Tab from '../../components/Tabs/Tab'
-import { Table } from '../../components/common/Table'
+import {Table} from '../../components/common/Table'
 
 import {fadeFromTop} from '../../services/animations/transition'
 
