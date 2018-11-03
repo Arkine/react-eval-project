@@ -16,6 +16,11 @@ Error.Message = styled.h3``
 Error.Info = styled.div``
 
 export default class ErrorBoundary extends React.Component {
+  static propTypes = {
+    children: PropTypes.element.isRequired,
+    text: PropTypes.string
+  }
+  
   constructor (props) {
     super(props)
 
@@ -60,9 +65,4 @@ export default class ErrorBoundary extends React.Component {
       </React.Fragment>
     )
   }
-}
-
-ErrorBoundary.propTypes = {
-  children: PropTypes.element.isRequired,
-  text: PropTypes.string
 }

@@ -10,10 +10,12 @@ import Tabs from '../../components/Tabs'
 import Tab from '../../components/Tabs/Tab'
 import { Table } from '../../components/common/Table'
 
+import {fadeUp} from '../../services/animations/transition'
+
 import {Container, colorArr, ColorBlock} from './styled'
 
 @setTitle('John-David Dalton | Events')
-@transitionRoute()
+@transitionRoute(fadeUp)
 @catchErrors('Failed to load events...')
 export default class EventsView extends React.PureComponent {
   static defaultProps = {

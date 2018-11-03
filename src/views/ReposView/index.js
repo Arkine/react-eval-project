@@ -8,10 +8,12 @@ import catchErrors from '../../decorators/catchErrors'
 import SlidingCards from '../../components/SlidingCards'
 import Repo from '../../components/Repo'
 
+import {fadeUp} from '../../services/animations/transition'
+
 import { Container } from './styled'
 
 @setTitle('John-David Dalton | Repositories')
-@transitionRoute()
+@transitionRoute(fadeUp)
 @catchErrors('Failed to load repositories...')
 export default class ReposView extends React.Component {
   static propTypes = {
