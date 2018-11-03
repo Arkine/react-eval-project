@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import setTitle from '../../decorators/setTitle'
 import transitionRoute from '../../decorators/transitionRoute'
+import catchErrors from '../../decorators/catchErrors'
 
 import LineGraph from '../../components/Data/LineGraph'
 import Tabs from '../../components/Tabs'
@@ -13,6 +14,7 @@ import {Container, colorArr, ColorBlock} from './styled'
 
 @setTitle('John-David Dalton | Events')
 @transitionRoute()
+@catchErrors('Failed to load events...')
 export default class EventsView extends React.PureComponent {
   static defaultProps = {
     events: []

@@ -74,6 +74,7 @@ export default class App extends Component {
 
   render () {
     const {user, events, repos, app} = this.props
+
     const isLoading = (user.loading || events.loading || repos.loading)
     if (app.loading || isLoading) {
       return <Loading isLoading={isLoading} text={'Loading...'} />
