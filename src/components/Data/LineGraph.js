@@ -61,10 +61,10 @@ export default class LineGraph extends React.Component {
     this.chart = React.createRef() // The chart itself
     this.container = React.createRef() // The container
     this.timeout = null
-    this.paths = []
 
     this.state = {
-      containerWidth: null
+      containerWidth: null,
+      containerHeight: 475
     }
   }
 
@@ -78,6 +78,10 @@ export default class LineGraph extends React.Component {
     window.removeEventListener('resize', this.onWindowResize, false)
   }
 
+  shouldComponentUpdate (nextProps, nextState) {
+    return this.state.containerWidth !== nextState.containerWidth
+  }
+
   resizeToContainer = () => {
     if (!this.container) {
       return null
@@ -87,11 +91,11 @@ export default class LineGraph extends React.Component {
     clearTimeout(this.timeout)
 
     // Debounce timeout
-    // this.timeout = setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.setState({
         containerWidth: this.container.clientWidth
       })
-    // }, 500)
+    }, 500)
   }
 
   addResizeListener () {
@@ -99,6 +103,7 @@ export default class LineGraph extends React.Component {
   }
 
   onWindowResize = e => {
+    console.log('RESIZING WINDOW!!!!')
     this.resizeToContainer()
   }
 
@@ -165,7 +170,7 @@ export default class LineGraph extends React.Component {
    */
   renderChart () {
     const data = this.getData()
-
+    console.log('re-rendereing', this.state.containerWidth)
     const margin = {
       top: 40,
       right: 26,
@@ -176,6 +181,9 @@ export default class LineGraph extends React.Component {
     const svgHeight = 475
     const width = svgWidth - margin.left - margin.right
     const height = svgHeight - margin.top - margin.bottom
+
+    // Clear any previous charts on resize
+    d3.selectAll('svg > *').remove()
 
     // Set the chart's width and height
     const svg = d3.select(this.chart)
@@ -233,6 +241,7 @@ export default class LineGraph extends React.Component {
 
     // Draw lines
     for (const index in data) {
+      // Draw dots
       g.selectAll('.dot')
         .data(data[index])
         .enter()
@@ -254,14 +263,13 @@ export default class LineGraph extends React.Component {
 
       const totalLength = path.node().getTotalLength()
 
-      path
+      // Animate lines
+        path
         .attr('stroke-dasharray', `${totalLength}  ${totalLength}`)
         .attr('stroke-dashoffset', -totalLength)
         .transition()
-        .duration(1000)
+        .duration(1200)
         .attr('stroke-dashoffset', 0)
-
-      this.paths.push(path)
     }
   }
 
