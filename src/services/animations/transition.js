@@ -29,7 +29,7 @@ export const fadeFromTop = (props) => {
 export const fadeFromLeft = (props) => {
   return {
     unmountOnExit: true,
-    timeOut: 5000,
+    timeOut: 1000,
     onEnter: node => TweenMax.set(node, {autoAlpha: 0, x: -50}),
     addEndListener: (node, done) => {
       TweenMax.to(node, 0.75, {
