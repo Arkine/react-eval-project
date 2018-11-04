@@ -85,16 +85,11 @@ export default class LineGraph extends React.Component {
 
     const lines = []
     for (const key of keys) {
-      const lineData = []
-      for (const dateObj of data) {
-        lineData.push({
-          date: new Date(dateObj.date),
-          key: key.split(/(?=[A-Z])/).join(' '),
-          value: dateObj.data[key]
-        })
-      }
-
-      lines.push(lineData)
+      lines.push(data.map(dateObj => ({
+        date: new Date(dateObj.date),
+        key: key.split(/(?=[A-Z])/).join(' '),
+        value: dateObj.data[key]
+      })))
     }
 
     return lines
