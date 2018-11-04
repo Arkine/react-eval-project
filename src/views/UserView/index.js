@@ -11,7 +11,7 @@ import {fadeFromLeft} from '../../services/animations/transition'
 
 import {Container} from './styled'
 
-@transitionRoute(fadeFromLeft, {timeout: 5000})
+@transitionRoute(fadeFromLeft)
 export default class UserView extends React.PureComponent {
   static propTypes = {
     user: PropTypes.object.isRequired
