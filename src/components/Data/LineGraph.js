@@ -69,13 +69,12 @@ export default class LineGraph extends React.Component {
   }
 
   componentDidMount () {
-    this.resizeToContainer()
     this.addResizeListener()
     this.renderChart()
   }
 
   componentDidUnmout () {
-    window.removeEventListener('resize', this.onWindowResize, false)
+    window.removeEventListener('resize', this.renderChart, false)
   }
 
   shouldComponentUpdate (nextProps, nextState) {
@@ -99,7 +98,7 @@ export default class LineGraph extends React.Component {
   }
 
   addResizeListener () {
-    window.addEventListener('resize', this.onWindowResize, false)
+    window.addEventListener('resize', this.renderChart, false)
   }
 
   onWindowResize = e => {
@@ -168,19 +167,20 @@ export default class LineGraph extends React.Component {
    * 
    * Renders the chart itself
    */
-  renderChart () {
+  renderChart = () => {
     const data = this.getData()
-    console.log('re-rendereing', this.state.containerWidth)
+
     const margin = {
       top: 40,
       right: 26,
       bottom: 40,
       left: 26
     }
-    const svgWidth = this.state.containerWidth || this.container.clientWidth
+    const svgWidth = this.container.getBoundingClientRect().width
     const svgHeight = 475
     const width = svgWidth - margin.left - margin.right
     const height = svgHeight - margin.top - margin.bottom
+    
 
     // Clear any previous charts on resize
     d3.selectAll('svg > *').remove()
@@ -264,7 +264,7 @@ export default class LineGraph extends React.Component {
       const totalLength = path.node().getTotalLength()
 
       // Animate lines
-        path
+      path
         .attr('stroke-dasharray', `${totalLength}  ${totalLength}`)
         .attr('stroke-dashoffset', -totalLength)
         .transition()
