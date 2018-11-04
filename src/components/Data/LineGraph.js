@@ -77,8 +77,8 @@ export default class LineGraph extends React.PureComponent {
    * @param {Array} data: data being plotted
    */
   parseData (data) {
-    // Lets us map out the lines. Dirty I know :(
-    const keys = Object.keys(data[0].data)
+    // get the keys from the legend to map to dataset
+    const keys = this.props.legend.map(item => item.key.split(' ').join(''))
 
     const lines = []
     for (const key of keys) {
@@ -170,8 +170,7 @@ export default class LineGraph extends React.PureComponent {
     const xMin = findBounds('min', 'date')
     const yMax = findBounds('max', 'value')
     const yMin = findBounds('min', 'value')
-    // x.domain(d3.extent(data[0], d => d.date))
-    // y.domain(d3.extent(data[2], d => d.value))
+
     x.domain([xMin, xMax])
     y.domain([yMin, yMax])
 
@@ -194,12 +193,11 @@ export default class LineGraph extends React.PureComponent {
       .attr('dy', '0.71em')
       .attr('text-anchor', 'end')
       .text('# of events')
-
+    
+    // Draw lines
     for (const index in data) {
-      const dataSet = data[index]
-
       g.append('path')
-        .datum(dataSet)
+        .datum(data[index])
         .attr('fill', 'none')
         .attr('stroke', this.props.colors[index])
         .attr('stroke-linejoin', 'round')
