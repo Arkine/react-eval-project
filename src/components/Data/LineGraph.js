@@ -17,6 +17,8 @@ Container.Legend = styled.div`
   top: 0.75rem;
   right: 0;
 
+  background-color: #fff;
+
   font-size: 0.6rem;
 
   display: flex;
@@ -216,20 +218,21 @@ export default class LineGraph extends React.Component {
         .attr('stroke', this.props.colors[index])
         .attr('cx', (d, i) => x(d.date))
         .attr('cy', d => y(d.value))
-        .attr('r', 12)
+        .attr('r', 5)
         .on('mouseover', d => {
-          toolTip.transition()
+          toolTip
+            .transition()
             .style('opacity', 0.9)
-          toolTip.html(`
-            <div>${d.key}</div>
-            <span>${d3.timeFormat('%B %d, %Y')(d.date)}</span> - <span>Events: ${d.value}</span>
-          `)
+          toolTip
+            .html(`
+              <div>${d.key}</div>
+              <span>${d3.timeFormat('%B %d, %Y')(d.date)}</span> - <span>Events: ${d.value}</span>
+            `)
             .style('left', (d3.event.pageX) + 'px')
             .style('top', (d3.event.pageY - 28) + 'px')
         })
         .on('mouseout', d => {
-          toolTip.transition()
-            .duration(500)
+          toolTip
             .style('opacity', 0)
         })
 
