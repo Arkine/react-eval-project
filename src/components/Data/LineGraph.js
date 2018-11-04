@@ -102,7 +102,6 @@ export default class LineGraph extends React.Component {
   }
 
   onWindowResize = e => {
-    console.log('RESIZING WINDOW!!!!')
     this.resizeToContainer()
   }
 
