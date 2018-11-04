@@ -31,6 +31,13 @@ export default class ReposView extends React.Component {
   render () {
     const repos = this.getRepos()
 
+    // Sort from newest to oldest
+    repos.sort((a, b) => {
+      if (a.created_at > b.created_at) return -1
+      if (a.created_at < b.created_at) return 1
+      return 0
+    })
+
     return (
       <Container>
         <Container.Body>
