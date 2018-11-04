@@ -241,7 +241,7 @@ export default class LineGraph extends React.Component {
     // Draw lines
     for (const index in data) {
       // Draw dots
-      g.selectAll('.dot')
+      const dot =  g.selectAll('.dot')
         .data(data[index])
         .enter()
         .append('circle')
@@ -269,6 +269,14 @@ export default class LineGraph extends React.Component {
         .transition()
         .duration(1200)
         .attr('stroke-dashoffset', 0)
+      
+      // Animate Dots
+      dot
+        .attr('r', 0)
+        .transition()
+        .duration(500)
+        .delay(250)
+        .attr('r', 3)
     }
   }
 
