@@ -34,7 +34,7 @@ export default class Repo extends React.PureComponent {
             </Container.Language>
           }
         </Container.Header>
-        {repo.description &&        
+        {repo.description &&
           <Container.Body>
             <p>{repo.description}</p>
           </Container.Body>

@@ -18,17 +18,17 @@ export default class UserView extends React.PureComponent {
   }
 
   render () {
-    const {bio, name, avatar_url, public_repos, followers} = this.props.user
+    const {bio, name, avatar_url: avatarUrl, public_repos: publicRepos, followers} = this.props.user
 
     return (
       <Container>
         <Container.Content>
           <Container.Username to={'/repositories'}>{name}</Container.Username>
-          <ImageBlock image={avatar_url} height={230} width={230} />
+          <ImageBlock image={avatarUrl} height={230} width={230} />
           <Container.Bio>
             <p>{bio}</p>
           </Container.Bio>
-          <IconText text={`Repositories ${public_repos}`} icon={faArchive} />
+          <IconText text={`Repositories ${publicRepos}`} icon={faArchive} />
           <IconText text={`Followers ${followers}`} icon={faUsers} />
         </Container.Content>
       </Container>
