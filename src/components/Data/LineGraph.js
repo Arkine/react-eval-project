@@ -43,7 +43,7 @@ const ColorBlock = styled.div`
   background-color: ${props => props.color};
 `
 
-export default class LineGraph extends React.PureComponent {
+export default class LineGraph extends React.Component {
   static defaultProps = {
     legend: []
   }
@@ -58,11 +58,48 @@ export default class LineGraph extends React.PureComponent {
   constructor (props) {
     super(props)
 
-    this.chart = React.createRef()
+    this.chart = React.createRef() // The chart itself
+    this.container = React.createRef() // The container
+    this.timeout = null
+    this.paths = []
+
+    this.state = {
+      containerWidth: null
+    }
   }
 
   componentDidMount () {
+    this.resizeToContainer()
+    this.addResizeListener()
     this.renderChart()
+  }
+
+  componentDidUnmout () {
+    window.removeEventListener('resize', this.onWindowResize, false)
+  }
+
+  resizeToContainer = () => {
+    if (!this.container) {
+      return null
+    }
+
+    // Clear the previous timeout
+    clearTimeout(this.timeout)
+
+    // Debounce timeout
+    // this.timeout = setTimeout(() => {
+      this.setState({
+        containerWidth: this.container.clientWidth
+      })
+    // }, 500)
+  }
+
+  addResizeListener () {
+    window.addEventListener('resize', this.onWindowResize, false)
+  }
+
+  onWindowResize = e => {
+    this.resizeToContainer()
   }
 
   createChartRef = el => {
@@ -111,8 +148,8 @@ export default class LineGraph extends React.PureComponent {
 
     return (
       <Container.Legend>
-        {legend.map(item => (
-          <Container.Legend_item>
+        {legend.map((item, i) => (
+          <Container.Legend_item key={`legend-${i}`}>
             <span>{item.key}</span>
             <ColorBlock color={item.color} />
           </Container.Legend_item>
@@ -135,7 +172,7 @@ export default class LineGraph extends React.PureComponent {
       bottom: 40,
       left: 26
     }
-    const svgWidth = this.container.clientWidth
+    const svgWidth = this.state.containerWidth || this.container.clientWidth
     const svgHeight = 475
     const width = svgWidth - margin.left - margin.right
     const height = svgHeight - margin.top - margin.bottom
@@ -193,10 +230,20 @@ export default class LineGraph extends React.PureComponent {
       .attr('dy', '0.71em')
       .attr('text-anchor', 'end')
       .text('# of events')
-    
+
     // Draw lines
     for (const index in data) {
-      g.append('path')
+      g.selectAll('.dot')
+        .data(data[index])
+        .enter()
+        .append('circle')
+        .attr('fill', this.props.colors[index])
+        .attr('stroke', this.props.colors[index])
+        .attr('cx', (d, i) => x(d.date))
+        .attr('cy', d => y(d.value))
+        .attr('r', 3)
+
+      const path = g.append('path')
         .datum(data[index])
         .attr('fill', 'none')
         .attr('stroke', this.props.colors[index])
@@ -204,6 +251,17 @@ export default class LineGraph extends React.PureComponent {
         .attr('stroke-linecap', 'round')
         .attr('stroke-width', 2.5)
         .attr('d', line)
+
+      const totalLength = path.node().getTotalLength()
+
+      path
+        .attr('stroke-dasharray', `${totalLength}  ${totalLength}`)
+        .attr('stroke-dashoffset', -totalLength)
+        .transition()
+        .duration(1000)
+        .attr('stroke-dashoffset', 0)
+
+      this.paths.push(path)
     }
   }
 
