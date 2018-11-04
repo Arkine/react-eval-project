@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import IconText from 'components/IconText'
 
 export const Container = styled.div`
   display: flex;
@@ -47,10 +48,41 @@ Container.Footer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+
+  flex-grow: 1;
 `
 
 Container.Footer_item = styled.div`
   text-align: center;
-  flex-grow: 1;
-  flex-basis: 3rem;
+  flex-basis: 6rem;
+
+  align-self: flex-end;
+
+  display: flex;
+  flex-flow: column;
+`
+export const Count = styled.div`
+  font-size: 2rem;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0.5rem 0;
+`
+
+Count.Icon = styled(IconText)`
+  margin: 0.2rem 0;
+
+  font-size: 1.5rem;
+  text-align: center;
+`
+
+Count.Number = styled.span`
+  font-size: 1.8rem;
+`
+Count.Repo_name = styled.div`
+  font-size: 0.75rem;
+  letter-spacing: 0.1rem;
 `

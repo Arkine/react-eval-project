@@ -28,7 +28,7 @@ export default class IconText extends React.PureComponent {
 
   render () {
     return (
-      <Container {...this.props}><Icon icon={this.props.icon} /><span>{this.props.text}</span></Container>
+      <Container {...this.props}><Icon icon={this.props.icon} {...this.props} /><span>{this.props.text}</span></Container>
     )
   }
 }

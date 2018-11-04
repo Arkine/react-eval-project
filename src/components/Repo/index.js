@@ -4,7 +4,7 @@ import {faUsers, faStar, faExclamation, faCodeBranch, faCode} from '@fortawesome
 
 import IconText from '../../components/IconText'
 
-import {Container} from './styled'
+import {Container, Count} from './styled'
 
 export default class Repo extends React.PureComponent {
   static defaultProps = {
@@ -34,14 +34,40 @@ export default class Repo extends React.PureComponent {
             </Container.Language>
           }
         </Container.Header>
-        <Container.Body>
-          <p>{repo.description}</p>
-        </Container.Body>
+        {repo.description &&        
+          <Container.Body>
+            <p>{repo.description}</p>
+          </Container.Body>
+        }
         <Container.Footer>
-          <Container.Footer_item><IconText icon={faUsers} text={repo.watchers_count} aria-label='Watchers' title='Watchers' /></Container.Footer_item>
-          <Container.Footer_item><IconText icon={faExclamation} text={repo.open_issues} aria-label='Open Issues' title='Open Issues' /></Container.Footer_item>
-          <Container.Footer_item><IconText icon={faStar} text={repo.stargazers_count} aria-label='Stars' title='Stars' /></Container.Footer_item>
-          <Container.Footer_item><IconText icon={faCodeBranch} text={repo.forks_count} aria-label='Forks' title='Forks' /></Container.Footer_item>
+          <Container.Footer_item>
+            <Count>
+              <Count.Number>{repo.watchers_count}</Count.Number>
+              <Count.Icon icon={faUsers} aria-label='Watchers' title='Watchers' />
+              <Count.Repo_name>Watchers</Count.Repo_name>
+            </Count>
+          </Container.Footer_item>
+          <Container.Footer_item>
+            <Count>
+              <Count.Number>{repo.open_issues}</Count.Number>
+              <Count.Icon icon={faExclamation} aria-label='Open Issues' title='Open Issues' />
+              <Count.Repo_name>Open Issues</Count.Repo_name>
+            </Count>
+          </Container.Footer_item>
+          <Container.Footer_item>
+            <Count>
+              <Count.Number>{repo.stargazers_count}</Count.Number>
+              <Count.Icon icon={faStar} aria-label='Stars' title='Stars' />
+              <Count.Repo_name>Stars</Count.Repo_name>
+            </Count>
+          </Container.Footer_item>
+          <Container.Footer_item>
+            <Count>
+              <Count.Number>{repo.forks_count}</Count.Number>
+              <Count.Icon icon={faCodeBranch} aria-label='Forks' title='Forks' />
+              <Count.Repo_name>Forks</Count.Repo_name>
+            </Count>
+          </Container.Footer_item>
         </Container.Footer>
       </Container>
     )
