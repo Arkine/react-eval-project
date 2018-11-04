@@ -85,7 +85,6 @@ Count.Icon = styled(IconText)`
 
 Count.Number = styled.div`
   font-size: 1.4rem;
-  letter-spacing: 0.15rem;
 
   text-align: center;
   width: 100%;
