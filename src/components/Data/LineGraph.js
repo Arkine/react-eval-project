@@ -264,6 +264,7 @@ export default class LineGraph extends React.Component {
         .attr('stroke-dasharray', `${totalLength}  ${totalLength}`)
         .attr('stroke-dashoffset', -totalLength)
         .transition()
+        .delay(index * (Math.floor(Math.random() * Math.floor(100)))) // random delay on line draw
         .duration(1200)
         .attr('stroke-dashoffset', 0)
 
