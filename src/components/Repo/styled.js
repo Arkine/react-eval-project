@@ -25,6 +25,8 @@ Container.Language = styled.div`
   position : absolute;
   top: 0.25rem;
   right: 1rem;
+
+  font-size: 1.2rem;
 `
 
 Container.Meta = styled.span`
@@ -60,6 +62,8 @@ Container.Footer_item = styled.div`
 
   display: flex;
   flex-flow: column;
+
+  margin: 0 -1rem;
 `
 export const Count = styled.div`
   font-size: 2rem;
@@ -80,7 +84,7 @@ Count.Icon = styled(IconText)`
 `
 
 Count.Number = styled.span`
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 `
 Count.Repo_name = styled.div`
   font-size: 0.75rem;
