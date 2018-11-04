@@ -87,6 +87,7 @@ export default class LineGraph extends React.Component {
       for (const dateObj of data) {
         lineData.push({
           date: new Date(dateObj.date),
+          key: key.split(/(?=[A-Z])/).join(' '),
           value: dateObj.data[key]
         })
       }
@@ -215,11 +216,14 @@ export default class LineGraph extends React.Component {
         .attr('stroke', this.props.colors[index])
         .attr('cx', (d, i) => x(d.date))
         .attr('cy', d => y(d.value))
-        .attr('r', 6)
+        .attr('r', 12)
         .on('mouseover', d => {
           toolTip.transition()
             .style('opacity', 0.9)
-          toolTip.html(`<span>${d3.timeFormat('%B %d, %Y')(d.date)}</span> - <span>Events: ${d.value}</span>`)
+          toolTip.html(`
+            <div>${d.key}</div>
+            <span>${d3.timeFormat('%B %d, %Y')(d.date)}</span> - <span>Events: ${d.value}</span>
+          `)
             .style('left', (d3.event.pageX) + 'px')
             .style('top', (d3.event.pageY - 28) + 'px')
         })
@@ -228,6 +232,7 @@ export default class LineGraph extends React.Component {
             .duration(500)
             .style('opacity', 0)
         })
+
       const path = g.append('path')
         .datum(data[index])
         .attr('fill', 'none')
