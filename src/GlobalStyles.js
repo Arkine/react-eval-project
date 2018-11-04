@@ -38,4 +38,12 @@ export default createGlobalStyle`
   p {
     line-height: 1.5;
   }
+
+  .tooltip {
+    position: absolute;
+
+    padding: 0.1rem;
+
+    background-color: #fff;
+  }
 `

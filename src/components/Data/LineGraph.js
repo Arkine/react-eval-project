@@ -194,11 +194,10 @@ export default class LineGraph extends React.Component {
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
-    const toolTip = svg.append('div')
-      .style('opacity', 1)
+    const toolTip = d3.select('body').append('div')
+      .attr('class', 'tooltip')
+      .style('opacity', 0.7)
       .style('border', '1px solid black')
-      .style('padding', '5px')
-      .style('position', 'absolute')
 
     // Set the x and y scale types and ranges
     const x = d3.scaleTime().rangeRound([0, width])
@@ -256,12 +255,11 @@ export default class LineGraph extends React.Component {
         .attr('stroke', this.props.colors[index])
         .attr('cx', (d, i) => x(d.date))
         .attr('cy', d => y(d.value))
-        .attr('r', 3)
+        .attr('r', 6)
         .on('mouseover', d => {
           toolTip.transition()
-            .duration(200)
             .style('opacity', 0.9)
-          toolTip.html(d.value)
+          toolTip.html(`<span>${d3.timeFormat('%B %d, %Y')(d.date)}</span> - <span>Events: ${d.value}</span>`)
             .style('left', (d3.event.pageX) + 'px')
             .style('top', (d3.event.pageY - 28) + 'px')
         })
@@ -278,6 +276,18 @@ export default class LineGraph extends React.Component {
         .attr('stroke-linecap', 'round')
         .attr('stroke-width', 2.5)
         .attr('d', line)
+        .on('mouseover', d => {
+          path
+            .transition()
+            .duration(200)
+            .attr('stroke-width', 5)
+        })
+        .on('mouseout', d => {
+          path
+            .transition()
+            .duration(250)
+            .attr('stroke-width', 2.5)
+        })
 
       const totalLength = path.node().getTotalLength()
 
@@ -288,7 +298,7 @@ export default class LineGraph extends React.Component {
         .transition()
         .duration(1200)
         .attr('stroke-dashoffset', 0)
-      
+
       // Animate Dots
       dot
         .attr('r', 0)
