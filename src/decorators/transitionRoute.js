@@ -25,7 +25,7 @@ const transitionRoute = (transitionProps = () => {}, additionalProps = {}) => Wr
       return (
         <Transition
           unmountOnExit
-          timeout={1000}
+          timeout={15000}
           in={this.state.mounted}
           {...transitionProps(this.state)}
           {...additionalProps}

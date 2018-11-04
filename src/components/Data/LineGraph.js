@@ -249,12 +249,22 @@ export default class LineGraph extends React.Component {
             .transition()
             .duration(200)
             .attr('stroke-width', 5)
+
+          dot
+            .transition()
+            .duration(200)
+            .attr('r', 6)
         })
         .on('mouseout', d => {
           path
             .transition()
-            .duration(250)
+            .duration(200)
             .attr('stroke-width', 2.5)
+
+          dot
+            .transition()
+            .duration(200)
+            .attr('r', 3)
         })
 
       const totalLength = path.node().getTotalLength()
@@ -262,7 +272,7 @@ export default class LineGraph extends React.Component {
       // Animate lines
       path
         .attr('stroke-dasharray', `${totalLength}  ${totalLength}`)
-        .attr('stroke-dashoffset', -totalLength)
+        .attr('stroke-dashoffset', -totalLength * ((index % 2 === 0) ? 1 : -1)) // ternary switch for flipping line direction
         .transition()
         .delay(index * (Math.floor(Math.random() * Math.floor(100)))) // random delay on line draw
         .duration(1200)
