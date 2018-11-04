@@ -132,7 +132,7 @@ export default class LineGraph extends React.Component {
 
     const margin = {
       top: 40,
-      right: 26,
+      right: 32,
       bottom: 40,
       left: 26
     }
