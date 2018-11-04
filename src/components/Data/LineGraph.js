@@ -60,49 +60,10 @@ export default class LineGraph extends React.Component {
 
     this.chart = React.createRef() // The chart itself
     this.container = React.createRef() // The container
-    this.timeout = null
-
-    this.state = {
-      containerWidth: null,
-      containerHeight: 475
-    }
   }
 
   componentDidMount () {
-    this.addResizeListener()
     this.renderChart()
-  }
-
-  componentDidUnmout () {
-    window.removeEventListener('resize', this.renderChart, false)
-  }
-
-  shouldComponentUpdate (nextProps, nextState) {
-    return this.state.containerWidth !== nextState.containerWidth
-  }
-
-  resizeToContainer = () => {
-    if (!this.container) {
-      return null
-    }
-
-    // Clear the previous timeout
-    clearTimeout(this.timeout)
-
-    // Debounce timeout
-    this.timeout = setTimeout(() => {
-      this.setState({
-        containerWidth: this.container.clientWidth
-      })
-    }, 500)
-  }
-
-  addResizeListener () {
-    window.addEventListener('resize', this.renderChart, false)
-  }
-
-  onWindowResize = e => {
-    this.resizeToContainer()
   }
 
   createChartRef = el => {
