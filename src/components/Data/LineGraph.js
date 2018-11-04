@@ -176,22 +176,29 @@ export default class LineGraph extends React.Component {
       bottom: 40,
       left: 26
     }
-    const svgWidth = this.container.getBoundingClientRect().width
+    const svgWidth = this.container.clientWidth
     const svgHeight = 475
     const width = svgWidth - margin.left - margin.right
     const height = svgHeight - margin.top - margin.bottom
 
     // Clear any previous charts on resize
-    d3.selectAll('svg > *').remove()
+    d3.selectAll('#chart svg > *').remove()
 
     // Set the chart's width and height
     const svg = d3.select(this.chart)
+      .attr('id', '#chart')
       .attr('width', svgWidth)
       .attr('height', svgHeight)
 
     // Append the graph
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+    const toolTip = svg.append('div')
+      .style('opacity', 1)
+      .style('border', '1px solid black')
+      .style('padding', '5px')
+      .style('position', 'absolute')
 
     // Set the x and y scale types and ranges
     const x = d3.scaleTime().rangeRound([0, width])
@@ -241,7 +248,7 @@ export default class LineGraph extends React.Component {
     // Draw lines
     for (const index in data) {
       // Draw dots
-      const dot =  g.selectAll('.dot')
+      const dot = g.selectAll('.dot')
         .data(data[index])
         .enter()
         .append('circle')
@@ -250,7 +257,19 @@ export default class LineGraph extends React.Component {
         .attr('cx', (d, i) => x(d.date))
         .attr('cy', d => y(d.value))
         .attr('r', 3)
-
+        .on('mouseover', d => {
+          toolTip.transition()
+            .duration(200)
+            .style('opacity', 0.9)
+          toolTip.html(d.value)
+            .style('left', (d3.event.pageX) + 'px')
+            .style('top', (d3.event.pageY - 28) + 'px')
+        })
+        .on('mouseout', d => {
+          toolTip.transition()
+            .duration(500)
+            .style('opacity', 0)
+        })
       const path = g.append('path')
         .datum(data[index])
         .attr('fill', 'none')
