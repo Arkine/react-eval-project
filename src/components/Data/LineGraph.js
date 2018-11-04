@@ -180,7 +180,6 @@ export default class LineGraph extends React.Component {
     const svgHeight = 475
     const width = svgWidth - margin.left - margin.right
     const height = svgHeight - margin.top - margin.bottom
-    
 
     // Clear any previous charts on resize
     d3.selectAll('svg > *').remove()
