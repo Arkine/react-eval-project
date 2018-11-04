@@ -73,7 +73,7 @@ export const Count = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin: 0.5rem 0;
+  margin: 0 0 0.25rem;
 `
 
 Count.Icon = styled(IconText)`
@@ -83,8 +83,12 @@ Count.Icon = styled(IconText)`
   text-align: center;
 `
 
-Count.Number = styled.span`
-  font-size: 1.6rem;
+Count.Number = styled.div`
+  font-size: 1.4rem;
+  letter-spacing: 0.15rem;
+
+  text-align: center;
+  width: 100%;
 `
 Count.Repo_name = styled.div`
   font-size: 0.75rem;
