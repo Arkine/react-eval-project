@@ -78,7 +78,7 @@ export default class LineGraph extends React.PureComponent {
    */
   parseData (data) {
     // get the keys from the legend to map to dataset
-    const keys = this.props.legend.map(item => item.key.split(' ').join(' '))
+    const keys = this.props.legend.map(item => item.key.split(' ').join(''))
 
     const lines = []
     for (const key of keys) {
