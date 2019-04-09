@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/276eebba-3117-4f23-a666-ba37bdb9a0e3/deploy-status)](https://app.netlify.com/sites/react-eval/deploys)
+
 # JavaScript: React Evaluation Project
 
 The purpose of this project is to allow us to evaluate your competency with `JavaScript` using React.  Your `JavaScript`, `HTML`, and `CSS` knowledge (not just your React) are very valuable to us when we make a decision on a possible future team member.
